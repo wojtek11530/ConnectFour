@@ -16,8 +16,14 @@ public class ConnectFourGame {
 
     public ConnectFourGame() {
         board = new Board();
-        player1 = new Player(Token.YELLOW, PlayerType.HUMAN);
-        player2 = new Player(Token.RED, PlayerType.AI);
+        player1 = new ComputerPlayer(Token.YELLOW, PlayerType.AI);
+        player2 = new HumanPlayer(Token.RED, PlayerType.HUMAN);
+    }
+
+    public ConnectFourGame(Player playerOne, Player playerTwo) {
+        board = new Board();
+        player1 = playerOne;
+        player2 = playerTwo;
     }
 
     public void initGame() {
@@ -53,11 +59,11 @@ public class ConnectFourGame {
         } else return boardFull();
     }
 
-    private void determineWinnerPlayer(Token winningToken) {
+    public void determineWinnerPlayer(Token winningToken) {
         winner = winningToken == player1.getPlayerToken() ? player1 : player2;
     }
 
-    private boolean putIntoColumnPossible(int column) {
+    public boolean putIntoColumnPossible(int column) {
         Token[] theUppestRow = board.getUppestRow();
         return theUppestRow[column] == Token.EMPTY;
     }
@@ -73,7 +79,7 @@ public class ConnectFourGame {
         return -1;
     }
 
-    private boolean boardFull() {
+    public boolean boardFull() {
         Token[] theUppestRow = board.getUppestRow();
         for (Token token : theUppestRow) {
             if (token == Token.EMPTY) {
@@ -83,7 +89,7 @@ public class ConnectFourGame {
         return true;
     }
 
-    private Token winning() {
+    public Token winning() {
         Token[][] boardFields = board.getBoard();
         int[][] directions = {{1, 0}, {1, -1}, {1, 1}, {0, 1}};
 
@@ -109,6 +115,88 @@ public class ConnectFourGame {
         return null;
     }
 
+
+    public void setEmptyField(int rowIndex, int colIndex) {
+        Token[][] boardFields = board.getBoard();
+        boardFields[rowIndex][colIndex] = Token.EMPTY;
+    }
+
+
+    public int evaluateState() {
+        int yellowEvaluation = 0;
+        int redEvaluation = 0;
+
+        Token winningToken = winning();
+        if (winningToken != null) {
+            if (winningToken == Token.YELLOW) {
+                yellowEvaluation += 1000;
+            } else if (winningToken == Token.RED){
+                redEvaluation += 1000;
+            }
+        }
+
+        yellowEvaluation += 10 * countThreeInLine(Token.YELLOW) + countTwoInLine(Token.YELLOW);
+        redEvaluation += 10 * countThreeInLine(Token.RED) + countTwoInLine(Token.RED);
+
+        return redEvaluation - yellowEvaluation;
+    }
+
+    private int countTwoInLine(Token token) {
+        int count = 0;
+
+        Token[][] boardFields = board.getBoard();
+        int[][] directions = {{1, 0}, {1, -1}, {1, 1}, {0, 1}};
+
+        for (int[] d : directions) {
+            int rowDirection = d[0];
+            int colDirection = d[1];
+            for (int rowIndex = 0; rowIndex < Board.ROW_NUMBER; rowIndex++) {
+                for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
+                    int lastRowIndex = rowIndex + rowDirection;
+                    int lastColIndex = colIndex + colDirection;
+                    if (0 <= lastRowIndex && lastRowIndex < Board.ROW_NUMBER && 0 <= lastColIndex && lastColIndex < Board.COLUMNS_NUMBER) {
+                        Token currentToken = boardFields[rowIndex][colIndex];
+                        if (currentToken == token
+                                && currentToken == boardFields[rowIndex + rowDirection][colIndex + colDirection])
+                        {
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    private int countThreeInLine(Token token) {
+        int count = 0;
+
+        Token[][] boardFields = board.getBoard();
+        int[][] directions = {{1, 0}, {1, -1}, {1, 1}, {0, 1}};
+
+        for (int[] d : directions) {
+            int rowDirection = d[0];
+            int colDirection = d[1];
+            for (int rowIndex = 0; rowIndex < Board.ROW_NUMBER; rowIndex++) {
+                for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
+                    int lastRowIndex = rowIndex + 2 * rowDirection;
+                    int lastColIndex = colIndex + 2 * colDirection;
+                    if (0 <= lastRowIndex && lastRowIndex < Board.ROW_NUMBER && 0 <= lastColIndex && lastColIndex < Board.COLUMNS_NUMBER) {
+                        Token currentToken = boardFields[rowIndex][colIndex];
+                        if (currentToken == token
+                                && currentToken == boardFields[rowIndex + rowDirection][colIndex + colDirection]
+                                && currentToken == boardFields[rowIndex + 2 * rowDirection][colIndex + 2 * colDirection])
+                        {
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+
     public Board getBoard() {
         return board;
     }
@@ -129,78 +217,13 @@ public class ConnectFourGame {
         return player2;
     }
 
-    /*
-
-    private Token winning() {
-        Token[][] boardFields = board.getBoard();
-        Token winningFromRows = winningInAnyRow(boardFields);
-        Token winningFromCols = winningInAnyColumn(boardFields);
-        Token winningFromDiags = winningInAnyDiag(boardFields);
-        if (winningFromRows != null) {
-            return winningFromRows;
-        } else if (winningFromCols != null) {
-            return winningFromCols;
-        } else if (winningFromDiags != null) {
-            return winningFromDiags;
-        } else {
-            return null;
-        }
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 
-
-
-    private Token winningInAnyRow(Token[][] boardFields) {
-        Token winningToken = null;
-        int rowIndex = 0;
-        while (winningToken == null && rowIndex < boardFields.length) {
-            Token[] row = boardFields[rowIndex];
-            winningToken = foundWinningTokenInLine(row);
-            rowIndex++;
-        }
-        return winningToken;
+    public void setWinner(Player winner) {
+        this.winner = winner;
     }
-
-    private Token winningInAnyColumn(Token[][] boardFields) {
-        Token winningToken = null;
-        int colIndex = 0;
-        while (winningToken == null && colIndex < boardFields[0].length) {
-            Token[] col = new Token[boardFields.length];
-            for (int i = 0; i < boardFields.length; i++) {
-                col[i] = boardFields[i][colIndex];
-            }
-            winningToken = foundWinningTokenInLine(col);
-            colIndex++;
-        }
-        return winningToken;
-    }
-
-    private Token winningInAnyDiag(Token[][] boardFields) {
-
-        return null;
-    }
-
-    private Token foundWinningTokenInLine(Token[] line) {
-        Token winningToken = null;
-        Token currentToken;
-        int currentLineLength;
-        currentToken = null;
-        currentLineLength = 0;
-        for (Token token : line) {
-            if (currentToken == token) {
-                currentLineLength++;
-            } else {
-                currentLineLength = 1;
-            }
-            currentToken = token;
-
-            if (currentLineLength == WINNING_LENGTH && currentToken != Token.EMPTY) {
-                winningToken = currentToken;
-            }
-        }
-        return winningToken;
-    }
-
-     */
 
 
 }

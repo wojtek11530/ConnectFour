@@ -1,9 +1,8 @@
 package userInreface;
 
-import game.Board;
-import game.ConnectFourGame;
-import game.Player;
-import game.Token;
+import ai.AI;
+import ai.MinMaxAI;
+import game.*;
 import gameControl.EndGameObject;
 import gameControl.GameController;
 import gameControl.GameMoveObject;
@@ -47,6 +46,17 @@ public class ConsoleUserInterfaceImpl implements UserInterface {
     public void printWrongMove() {
         System.out.println("Wrong input");
         getColumnChoice();
+    }
+
+    @Override
+    public void requestNewGame() {
+        HumanPlayer playerOne = new HumanPlayer(Token.YELLOW, PlayerType.HUMAN);
+
+        ComputerPlayer playerTwo = new ComputerPlayer(Token.RED, PlayerType.AI);
+        AI ai = new MinMaxAI();
+       playerTwo.setAi(ai);
+
+        gameController.setNewGame(new ConnectFourGame(playerOne, playerTwo));
     }
 
     private void printCurrentPlayer(Player player) {

@@ -1,22 +1,35 @@
 package gameControl;
 
-import game.Board;
+import game.ComputerPlayer;
 import game.ConnectFourGame;
-import game.PlayerType;
 import userInreface.UserInterface;
-
-import java.util.Random;
 
 public class GameController {
 
     ConnectFourGame game;
     UserInterface userInterface;
-    Random random = new Random();
 
     public GameController(UserInterface userInterface) {
-        game = new ConnectFourGame();
         this.userInterface = userInterface;
         this.userInterface.setGameController(this);
+    }
+
+    public void settleGame() {
+        userInterface.requestNewGame();
+    }
+
+    public void setNewGame(ConnectFourGame connectFourGame) {
+        game = connectFourGame;
+
+        if (!game.getPlayer1().isReal()) {
+            ComputerPlayer computerPlayer = (ComputerPlayer) game.getPlayer1();
+            computerPlayer.assignToGame(game);
+        }
+        if (!game.getPlayer2().isReal()) {
+            ComputerPlayer computerPlayer = (ComputerPlayer) game.getPlayer2();
+            computerPlayer.assignToGame(game);
+        }
+        startGame();
     }
 
     public void startGame() {
@@ -34,20 +47,18 @@ public class GameController {
             } else {
                 game.swapPlayers();
                 userInterface.printGameAfterMove(moveObject, game.getCurrentPlayer());
-                if (game.getCurrentPlayer().getType() == PlayerType.AI) {
-                    performAIMove();
-                }
             }
-        } else if (game.getCurrentPlayer().getType() == PlayerType.AI) {
-            performAIMove();
+        } else if (!game.getCurrentPlayer().isReal()) {
+            ComputerPlayer currentAIPlayer = (ComputerPlayer) game.getCurrentPlayer();
+            performAIMove(currentAIPlayer);
         } else {
             userInterface.printWrongMove();
         }
     }
 
-    public void performAIMove() {
-        int randomCol = random.nextInt(Board.COLUMNS_NUMBER);
-        playNextMove(randomCol);
+    public void performAIMove(ComputerPlayer currentAIPlayer) {
+        int aiNextMove = currentAIPlayer.getAIMove();
+        playNextMove(aiNextMove);
     }
 
 }

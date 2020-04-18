@@ -1,9 +1,10 @@
 package game;
 
-public class Player {
 
-    private Token playerToken;
-    private PlayerType type;
+public abstract class Player {
+
+    protected Token playerToken;
+    protected PlayerType type;
 
     public Player(Token playerToken, PlayerType type) {
         this.playerToken = playerToken;
@@ -17,6 +18,8 @@ public class Player {
     public PlayerType getType() {
         return type;
     }
+
+    public abstract boolean isReal();
 
     @Override
     public String toString() {

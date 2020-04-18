@@ -15,4 +15,5 @@ public interface UserInterface {
     void printGameAfterMove(GameMoveObject gameMoveObject, Player nextPlayer);
     void printEndedGame(EndGameObject endGameObject);
     void printWrongMove();
+    void requestNewGame();
 }

@@ -2,42 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="969d03f4-ebf4-4b6c-bf28-1c466755aa4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/ConnectFourGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/PlayerType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/Token.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameControl/EndGameObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameControl/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameControl/GameMoveObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameControl/GameStartObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/userInreface/ConsoleUserInterfaceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/userInreface/GUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/userInreface/UserInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/ArrowButton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Board.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/FocusArrowButton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/LeftArrowYellow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/RedToken.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/RedTokenSmall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/RightArrowRed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/YellowToken.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/YellowTokenSmall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/imagesBig/Board.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/imagesBig/BoardTrans.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/imagesBig/RedToken.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/imagesBig/RedTokenTrans.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/imagesBig/YellowToken.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/imagesBig/YellowTokenTrans.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/AI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/MinMaxAI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/ComputerPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/HumanPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/ExitBtn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/FocusExitBtn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/FocusNewGameBtn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/FocusStartGameBtn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/NewGameBtn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/StartGameBtn.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/ConnectFourGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/ConnectFourGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gameControl/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameControl/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInreface/ConsoleUserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInreface/ConsoleUserInterfaceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInreface/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInreface/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInreface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInreface/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
@@ -46,8 +48,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -88,12 +90,12 @@
     <property name="settings.editor.selected.configurable" value="project.propDebugger" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\images" />
       <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\imagesBig" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -140,7 +142,11 @@
       <updated>1586856490790</updated>
       <workItem from="1586856495100" duration="19981000" />
       <workItem from="1586936159744" duration="11532000" />
-      <workItem from="1586948599361" duration="1738000" />
+      <workItem from="1586948599361" duration="13069000" />
+      <workItem from="1587032381689" duration="19000" />
+      <workItem from="1587126938962" duration="5098000" />
+      <workItem from="1587138273987" duration="9300000" />
+      <workItem from="1587203653354" duration="20948000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1586856606710</created>
@@ -149,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586856606710</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add basic feature of Connect Four&#10; - apply the game rules&#10; - implement random AI&#10; - implement GUI Connect Four game">
+      <created>1586950557708</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586950557708</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,17 +170,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init commit" />
+    <MESSAGE value="Add basic feature of Connect Four&#10; - apply the game rules&#10; - implement random AI&#10; - implement GUI Connect Four game" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add basic feature of Connect Four&#10; - apply the game rules&#10; - implement random AI&#10; - implement GUI Connect Four game" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1586949595025">
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1587238365335">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586949595025" />
-    <state x="232" y="8" key="CommitChangelistDialog2" timestamp="1586856605594">
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587238365335" />
+    <state x="303" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587142268512">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="232" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586856605594" />
+    <state x="303" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1587142268512" />
+    <state x="929" y="174" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587229115829">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="929" y="174" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1587229115829" />
+    <state x="232" y="0" key="CommitChangelistDialog2" timestamp="1587239877604">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="232" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587239877604" />
     <state x="478" y="307" width="419" height="210" key="Github.ShareDialog" timestamp="1586856533025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -176,42 +198,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="380" y="119" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1586856545036" />
-    <state width="1493" height="159" key="GridCell.Tab.0.bottom" timestamp="1586950427932">
+    <state width="1493" height="365" key="GridCell.Tab.0.bottom" timestamp="1587239832512">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="159" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586950427932" />
-    <state width="1493" height="159" key="GridCell.Tab.0.center" timestamp="1586950427932">
+    <state width="1493" height="365" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587239832512" />
+    <state width="1493" height="365" key="GridCell.Tab.0.center" timestamp="1587239832512">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="159" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586950427932" />
-    <state width="1493" height="159" key="GridCell.Tab.0.left" timestamp="1586950427932">
+    <state width="1493" height="365" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587239832512" />
+    <state width="1493" height="365" key="GridCell.Tab.0.left" timestamp="1587239832512">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="159" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586950427932" />
-    <state width="1493" height="159" key="GridCell.Tab.0.right" timestamp="1586950427932">
+    <state width="1493" height="365" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587239832512" />
+    <state width="1493" height="365" key="GridCell.Tab.0.right" timestamp="1587239832512">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="159" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586950427932" />
-    <state width="1493" height="288" key="GridCell.Tab.1.bottom" timestamp="1586947762932">
+    <state width="1493" height="365" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587239832512" />
+    <state width="1493" height="355" key="GridCell.Tab.1.bottom" timestamp="1587239156841">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586947762932" />
-    <state width="1493" height="288" key="GridCell.Tab.1.center" timestamp="1586947762931">
+    <state width="1493" height="355" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587239156841" />
+    <state width="1493" height="355" key="GridCell.Tab.1.center" timestamp="1587239156841">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1586947762931" />
-    <state width="1493" height="288" key="GridCell.Tab.1.left" timestamp="1586947762931">
+    <state width="1493" height="355" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587239156841" />
+    <state width="1493" height="355" key="GridCell.Tab.1.left" timestamp="1587239156841">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1586947762931" />
-    <state width="1493" height="288" key="GridCell.Tab.1.right" timestamp="1586947762932">
+    <state width="1493" height="355" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587239156841" />
+    <state width="1493" height="355" key="GridCell.Tab.1.right" timestamp="1587239156841">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1586947762932" />
-    <state x="584" y="347" key="ReplaceDuplicatesPrompt" timestamp="1586943118735">
+    <state width="1493" height="355" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587239156841" />
+    <state x="584" y="347" key="ReplaceDuplicatesPrompt" timestamp="1587231975494">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="584" y="347" key="ReplaceDuplicatesPrompt/0.0.1536.824@0.0.1536.824" timestamp="1586943118735" />
+    <state x="584" y="347" key="ReplaceDuplicatesPrompt/0.0.1536.824@0.0.1536.824" timestamp="1587231975494" />
     <state x="277" y="56" key="SettingsEditor" timestamp="1586880371970">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -220,28 +242,21 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1586856612300" />
-    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1586941724712">
+    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1587147025794">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1586941724712" />
-    <state x="793" y="322" width="538" height="495" key="extract.method.dialog" timestamp="1586943518812">
+    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1587147025793" />
+    <state x="740" y="274" width="538" height="495" key="extract.method.dialog" timestamp="1587232008992">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="793" y="322" width="538" height="495" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1586943518812" />
-    <state x="511" y="32" key="refactoring.ChangeSignatureDialog" timestamp="1586949121684">
+    <state x="740" y="274" width="538" height="495" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1587232008992" />
+    <state x="511" y="32" key="refactoring.ChangeSignatureDialog" timestamp="1587205798308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="511" y="32" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1586949121684" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/userInreface/GUI.java</url>
-          <line>228</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="511" y="32" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1587205798308" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1587235177097">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587235177097" />
   </component>
 </project>

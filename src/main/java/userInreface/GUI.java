@@ -1,15 +1,15 @@
 package userInreface;
 
-import game.Board;
-import game.Player;
-import game.PlayerType;
-import game.Token;
+import game.*;
 import gameControl.EndGameObject;
 import gameControl.GameController;
 import gameControl.GameMoveObject;
 import gameControl.GameStartObject;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.metal.DefaultMetalTheme;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
@@ -17,24 +17,20 @@ import java.net.URL;
 public class GUI implements UserInterface {
 
     private final int DEFAULT_WIDTH = 474;
-    private final int DEFAULT_HEIGHT = 385;
+    private final int DEFAULT_THE_UPPEST_PANEL_HEIGHT = 70;
+    private final int DEFAULT_UPPER_PANEL_HEIGHT = 70;
+    private final int DEFAULT_BOARD_HEIGHT = 385;
+    private final int DEFAULT_LOWER_PANEL_HEIGHT = 60;
+    private final int DEFAULT_HEIGHT = DEFAULT_THE_UPPEST_PANEL_HEIGHT + DEFAULT_UPPER_PANEL_HEIGHT +
+            DEFAULT_BOARD_HEIGHT + DEFAULT_LOWER_PANEL_HEIGHT;
+
+    private final Color BACKGROUND_COLOR = new java.awt.Color(240, 234, 220);
 
     private JFrame mainFrame;
     private JPanel panelMain;
-    private JPanel endGamePanel;
+    private NewGamePanel newGamePanel;
+
     private JPanel panelBoardNumbers;
-
-    private JLayeredPane layeredGameBoard;
-
-    private JPanel playersPanel;
-    private String playerOneName;
-    private String playerTwoName;
-
-
-    private JLabel arrowLabel;
-
-    private JLabel infoTextLabel;
-
     private JButton col1_button = new JButton();
     private JButton col2_button = new JButton();
     private JButton col3_button = new JButton();
@@ -45,6 +41,24 @@ public class GUI implements UserInterface {
     private JButton[] buttons = new JButton[]
             {col1_button, col2_button, col3_button, col4_button,
                     col5_button, col6_button, col7_button};
+
+    private JLayeredPane layeredGameBoard;
+
+    private JPanel playersPanel;
+    private String playerOneName;
+    private String playerTwoName;
+    private JLabel playerOneNameLabel;
+    private JLabel playerTwoNameLabel;
+    private JLabel arrowLabel;
+
+
+    private JPanel upperPanel;
+    private JPanel infoGamePanel;
+    private JLabel infoTextLabel;
+
+    private JPanel buttonsPanel;
+    private JButton newGameButton;
+    private JButton exitButton;
 
 
     private URL boardUrl = getClass().getResource("/images/Board.png");
@@ -70,25 +84,39 @@ public class GUI implements UserInterface {
     private URL focusArrowButtonImgUrl = getClass().getResource("/images/FocusArrowButton.png");
     private ImageIcon focusArrowButtonImage = new ImageIcon(focusArrowButtonImgUrl);
 
+    private URL newGameBtnImgUrl = getClass().getResource("/images/NewGameBtn.png");
+    private ImageIcon newGameBtnImage = new ImageIcon(newGameBtnImgUrl);
+    private URL focusNewGameBtnImgUrl = getClass().getResource("/images/FocusNewGameBtn.png");
+    private ImageIcon focusNewGameBtnImage = new ImageIcon(focusNewGameBtnImgUrl);
+
+    private URL exitBtnImgUrl = getClass().getResource("/images/ExitBtn.png");
+    private ImageIcon exitBtnImage = new ImageIcon(exitBtnImgUrl);
+    private URL focusExitBtnImgUrl = getClass().getResource("/images/FocusExitBtn.png");
+    private ImageIcon focusExitBtnImage = new ImageIcon(focusExitBtnImgUrl);
+
     private GameController gameController;
-    private JLabel playerOneNameLabel;
-    private JLabel playerTwoNameLabel;
 
     public GUI() {
-        //Creating the Frame
         mainFrame = new JFrame("Connect Four!");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        centerWindow(mainFrame, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        mainFrame.getContentPane().setBackground(BACKGROUND_COLOR);
 
         setButtons();
         addButtonListeners();
-        Component compMainWindowContents = createContentComponents();
-        mainFrame.getContentPane().add(compMainWindowContents, BorderLayout.CENTER);
+        createContentComponents();
+        createNewGamePanel();
+
+        mainFrame.getContentPane().add(panelMain, BorderLayout.CENTER);
+        centerWindow(mainFrame, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
         mainFrame.setFocusable(true);
         mainFrame.pack();
-        //mainFrame.setVisible(true);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                mainFrame.setVisible(true);
+            }
+        });
     }
 
     private void setButtons() {
@@ -100,17 +128,14 @@ public class GUI implements UserInterface {
             button.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-
                 }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-
                 }
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-
                 }
 
                 @Override
@@ -127,7 +152,6 @@ public class GUI implements UserInterface {
             });
         }
     }
-
 
     private void addButtonListeners() {
         col1_button.addActionListener(new ActionListener() {
@@ -173,47 +197,162 @@ public class GUI implements UserInterface {
         });
     }
 
-    private void centerWindow(JFrame frame, int width, int height) {
+    private void centerWindow(Window window, int width, int height) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) (dimension.getWidth() - frame.getWidth() - width) / 2;
-        int y = (int) (dimension.getHeight() - frame.getHeight() - height) / 2;
-        frame.setLocation(x, y);
+        int x = (int) (dimension.getWidth() - width) / 2;
+        int y = (int) (dimension.getHeight() - height) / 2;
+        window.setLocation(x, y);
+    }
+
+    private void createNewGamePanel() {
+        newGamePanel = new NewGamePanel(DEFAULT_WIDTH, DEFAULT_HEIGHT, this);
     }
 
     private Component createContentComponents() {
-        createBoardNumbersPanel();
+
+        createUpperPanel();
         createLayeredBoard();
         createPlayersPanel();
-        createEndGamePanel();
 
         panelMain = new JPanel();
+        panelMain.setBackground(BACKGROUND_COLOR);
         panelMain.setLayout(new BorderLayout());
         panelMain.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
 
-        panelMain.add(panelBoardNumbers, BorderLayout.NORTH);
+        panelMain.add(upperPanel, BorderLayout.NORTH);
         panelMain.add(layeredGameBoard, BorderLayout.CENTER);
         panelMain.add(playersPanel, BorderLayout.SOUTH);
         mainFrame.setResizable(false);
         return panelMain;
     }
 
+    private void createUpperPanel() {
+        createBoardNumbersPanel();
+        createButtonsPanel();
+        createEndGamePanel();
+
+        upperPanel = new JPanel();
+        upperPanel.setLayout(new BorderLayout());
+        upperPanel.add(buttonsPanel, BorderLayout.NORTH);
+        upperPanel.add(panelBoardNumbers, BorderLayout.CENTER);
+    }
+
+    private void createButtonsPanel() {
+        newGameButton = new JButton();
+        newGameButton.setIcon(newGameBtnImage);
+        newGameButton.setBorder(BorderFactory.createEmptyBorder());
+        newGameButton.setContentAreaFilled(false);
+
+
+        newGameButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                JButton btn = (JButton) e.getComponent();
+                btn.setIcon(newGameBtnImage);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                JButton btn = (JButton) e.getComponent();
+                btn.setIcon(focusNewGameBtnImage);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                JButton btn = (JButton) e.getComponent();
+                btn.setIcon(newGameBtnImage);
+            }
+        });
+
+        newGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        requestNewGame();
+                    }
+                }).start();
+            }
+        });
+
+        exitButton = new JButton();
+        exitButton.setIcon(exitBtnImage);
+        exitButton.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 0));
+        exitButton.setContentAreaFilled(false);
+
+        exitButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                JButton btn = (JButton) e.getComponent();
+                btn.setIcon(focusExitBtnImage);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                JButton btn = (JButton) e.getComponent();
+                btn.setIcon(exitBtnImage);
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.dispose();
+            }
+        });
+
+        buttonsPanel = new JPanel();
+        buttonsPanel.setBackground(BACKGROUND_COLOR);
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
+        buttonsPanel.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_THE_UPPEST_PANEL_HEIGHT));
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        buttonsPanel.add(newGameButton);
+        buttonsPanel.add(exitButton);
+
+        newGameButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        exitButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+    }
+
     private void createEndGamePanel() {
-        endGamePanel = new JPanel();
-        endGamePanel.setLayout(new BorderLayout());
-        endGamePanel.setPreferredSize(new Dimension(DEFAULT_WIDTH, 70));
-        endGamePanel.setBorder(BorderFactory.createEmptyBorder(15, 30, 5, 30));
+        infoGamePanel = new JPanel();
+        infoGamePanel.setLayout(new BorderLayout());
+        infoGamePanel.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_UPPER_PANEL_HEIGHT));
+        infoGamePanel.setBorder(BorderFactory.createEmptyBorder(5, 25, 15, 25));
 
         infoTextLabel = new JLabel();
-        infoTextLabel.setFont(new Font("Sans-Serif", Font.BOLD, 24));
+        infoTextLabel.setFont(new Font("Verdana", Font.PLAIN, 32));
         infoTextLabel.setForeground(new Color(10, 78, 169));
-        endGamePanel.add(infoTextLabel, BorderLayout.CENTER);
+
+        infoGamePanel.add(infoTextLabel, BorderLayout.CENTER);
     }
 
     private void createBoardNumbersPanel() {
         panelBoardNumbers = new JPanel();
+        panelBoardNumbers.setBackground(BACKGROUND_COLOR);
 
         panelBoardNumbers.setLayout(new GridLayout(1, 7, 10, 0));
-        panelBoardNumbers.setPreferredSize(new Dimension(DEFAULT_WIDTH, 70));
+        panelBoardNumbers.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_UPPER_PANEL_HEIGHT));
         panelBoardNumbers.setBorder(BorderFactory.createEmptyBorder(5, 30, 5, 30));
         for (JButton button : buttons) {
             panelBoardNumbers.add(button);
@@ -222,7 +361,8 @@ public class GUI implements UserInterface {
 
     private void createLayeredBoard() {
         layeredGameBoard = new JLayeredPane();
-        layeredGameBoard.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+        layeredGameBoard.setBackground(BACKGROUND_COLOR);
+        layeredGameBoard.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_BOARD_HEIGHT));
 
         JLabel imageBoardLabel = new JLabel(boardImage);
         imageBoardLabel.setBounds(20, 0, boardImage.getIconWidth(), boardImage.getIconHeight());
@@ -231,41 +371,55 @@ public class GUI implements UserInterface {
 
     private void createPlayersPanel() {
         playersPanel = new JPanel();
-        playersPanel.setLayout(new BorderLayout());
+        playersPanel.setBackground(BACKGROUND_COLOR);
+        playersPanel.setLayout(new BoxLayout(playersPanel, BoxLayout.X_AXIS));
 
         JPanel yellowPLayerPanel = new JPanel();
-        yellowPLayerPanel.setLayout(new BorderLayout());
 
-
-        JLabel imageYellowTokenLabel = new JLabel(smallYellowTokenImage);
+        yellowPLayerPanel.setBackground(BACKGROUND_COLOR);
         playerOneNameLabel = new JLabel();
-        playerOneNameLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-        playerOneNameLabel.setFont(new Font("Sans-Serif", Font.BOLD, 18));
-        playerOneNameLabel.setForeground(new Color(10, 78, 169));
+        playerOneNameLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+        setPlayerLabelTextStyle(playerOneNameLabel);
+        JLabel imageYellowTokenLabel = new JLabel(smallYellowTokenImage);
+        yellowPLayerPanel.add(imageYellowTokenLabel);
+        yellowPLayerPanel.add(playerOneNameLabel);
+        yellowPLayerPanel.setPreferredSize(new Dimension(200, DEFAULT_LOWER_PANEL_HEIGHT));
 
-        yellowPLayerPanel.add(imageYellowTokenLabel, BorderLayout.LINE_START);
-        yellowPLayerPanel.add(playerOneNameLabel, BorderLayout.CENTER);
-
-        JPanel redPLayerPanel = new JPanel();
-        redPLayerPanel.setLayout(new BorderLayout());
-
+        JPanel redPlayerPanel = new JPanel();
+        redPlayerPanel.setBackground(BACKGROUND_COLOR);
         JLabel imageRedTokenLabel = new JLabel(smallRedTokenImage);
-
         playerTwoNameLabel = new JLabel();
-        playerTwoNameLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
-        playerTwoNameLabel.setFont(new Font("Sans-Serif", Font.BOLD, 18));
-        playerTwoNameLabel.setForeground(new Color(10, 78, 169));
+        playerTwoNameLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+        setPlayerLabelTextStyle(playerTwoNameLabel);
+        redPlayerPanel.add(playerTwoNameLabel);
+        redPlayerPanel.add(imageRedTokenLabel);
+        redPlayerPanel.setPreferredSize(new Dimension(200, DEFAULT_LOWER_PANEL_HEIGHT));
 
-        redPLayerPanel.add(imageRedTokenLabel, BorderLayout.LINE_END);
-        redPLayerPanel.add(playerTwoNameLabel, BorderLayout.CENTER);
-
+        JPanel centralPanel = new JPanel();
+        centralPanel.setLayout(new BoxLayout(centralPanel, BoxLayout.PAGE_AXIS));
         arrowLabel = new JLabel(leftYellowArrowImage);
+        centralPanel.add(Box.createVerticalGlue());
+        centralPanel.add(arrowLabel);
+        centralPanel.add(Box.createVerticalGlue());
+        centralPanel.setBackground(BACKGROUND_COLOR);
 
-        playersPanel.add(yellowPLayerPanel, BorderLayout.LINE_START);
-        playersPanel.add(redPLayerPanel, BorderLayout.LINE_END);
-        playersPanel.add(arrowLabel, BorderLayout.CENTER);
-        playersPanel.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
-        playersPanel.setPreferredSize(new Dimension(DEFAULT_WIDTH, 50));
+        playersPanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        playersPanel.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_LOWER_PANEL_HEIGHT));
+
+        yellowPLayerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        redPlayerPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        playersPanel.add(yellowPLayerPanel);
+        playersPanel.add(Box.createHorizontalGlue());
+        playersPanel.add(centralPanel);
+        playersPanel.add(Box.createHorizontalGlue());
+        playersPanel.add(redPlayerPanel); //, BorderLayout.LINE_END);
+
+
+    }
+
+    private void setPlayerLabelTextStyle(JLabel playerLabel) {
+        playerLabel.setFont(new Font("Verdana", Font.BOLD, 18));
+        playerLabel.setForeground(new Color(10, 78, 169));
     }
 
 
@@ -274,7 +428,11 @@ public class GUI implements UserInterface {
     }
 
     public void printStartGame(GameStartObject gameStartObject) {
+        panelMain.remove(layeredGameBoard);
+        createLayeredBoard();
+        panelMain.add(layeredGameBoard, BorderLayout.CENTER);
         mainFrame.setVisible(true);
+
         Player playerOne = gameStartObject.getPlayer1();
         Player playerTwo = gameStartObject.getPlayer2();
         if (playerOne.getType() == PlayerType.AI) {
@@ -285,7 +443,7 @@ public class GUI implements UserInterface {
         if (playerTwo.getType() == PlayerType.AI) {
             playerTwoName = "Player 2 (AI)";
         } else {
-            playerOneName = "Player 2";
+            playerTwoName = "Player 2";
         }
         playerOneNameLabel.setText(playerOneName);
         playerTwoNameLabel.setText(playerTwoName);
@@ -293,8 +451,10 @@ public class GUI implements UserInterface {
         Player nextPlayer = gameStartObject.getNextPlayer();
         drawPlayerArrow(nextPlayer);
 
-        if (nextPlayer.getType() == PlayerType.AI) {
-            gameController.performAIMove();
+        if (!nextPlayer.isReal()) {
+            deactivateButtons();
+            final ComputerPlayer currentAIPlayer = (ComputerPlayer) nextPlayer;
+            gameController.performAIMove(currentAIPlayer);
         }
     }
 
@@ -302,14 +462,38 @@ public class GUI implements UserInterface {
         int lastMoveCol = gameMoveObject.getLastMoveCol();
         int lastMoveRow = gameMoveObject.getLatMoveRow();
         Token lastMoveToken = gameMoveObject.getLastMoveToken();
-        placeChecker(lastMoveToken, lastMoveRow, lastMoveCol);
-
+        placeToken(lastMoveToken, lastMoveRow, lastMoveCol);
+        if (!nextPlayer.isReal()) {
+            deactivateButtons();
+        } else {
+            activateButtons();
+        }
         drawPlayerArrow(nextPlayer);
-        //mainFrame.validate();
-        //mainFrame.repaint();
+
+        if (nextPlayer.getType() == PlayerType.AI) {
+            final ComputerPlayer currentAIPlayer = (ComputerPlayer) nextPlayer;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    gameController.performAIMove(currentAIPlayer);
+                }
+            }).start();
+        }
     }
 
-    void drawPlayerArrow(Player nextPlayer) {
+    private void activateButtons() {
+        for (JButton button : buttons) {
+            button.setEnabled(true);
+        }
+    }
+
+    private void deactivateButtons() {
+        for (JButton button : buttons) {
+            button.setEnabled(false);
+        }
+    }
+
+    void drawPlayerArrow(final Player nextPlayer) {
         if (nextPlayer.getPlayerToken() == Token.YELLOW) {
             arrowLabel.setIcon(leftYellowArrowImage);
         } else {
@@ -317,7 +501,7 @@ public class GUI implements UserInterface {
         }
     }
 
-    private void placeChecker(Token token, int row, int col) {
+    private void placeToken(Token token, int row, int col) {
         int xOffset = 60 * col;
         int yOffset = 60 * row;
 
@@ -325,7 +509,6 @@ public class GUI implements UserInterface {
         JLabel checkerLabel = new JLabel(checkerIcon);
         checkerLabel.setBounds(30 + xOffset, 13 + yOffset, checkerIcon.getIconWidth(), checkerIcon.getIconHeight());
         layeredGameBoard.add(checkerLabel, 0, 0);
-        mainFrame.paint(mainFrame.getGraphics());
     }
 
     public void printEndedGame(EndGameObject endGameObject) {
@@ -333,24 +516,45 @@ public class GUI implements UserInterface {
         int lastMoveCol = gameMoveObject.getLastMoveCol();
         int lastMoveRow = gameMoveObject.getLatMoveRow();
         Token lastMoveToken = gameMoveObject.getLastMoveToken();
-        placeChecker(lastMoveToken, lastMoveRow, lastMoveCol);
+        placeToken(lastMoveToken, lastMoveRow, lastMoveCol);
 
         arrowLabel.setBounds(0, 0, leftYellowArrowImage.getIconWidth(), leftYellowArrowImage.getIconHeight());
         arrowLabel.setIcon(null);
         Player winner = endGameObject.getWinner();
         if (winner != null) {
             String winnerName = winner.getPlayerToken() == Token.YELLOW ? playerOneName : playerTwoName;
-
             infoTextLabel.setText("WINNER: " + winnerName);
         } else {
             infoTextLabel.setText("TIE");
         }
-        panelMain.remove(panelBoardNumbers);
-        panelMain.add(endGamePanel, BorderLayout.NORTH);
-        panelMain.revalidate();
+        upperPanel.remove(panelBoardNumbers);
+        upperPanel.add(infoGamePanel, BorderLayout.CENTER);
+        upperPanel.revalidate();
     }
 
     public void printWrongMove() {
 
     }
+
+    @Override
+    public void requestNewGame() {
+        mainFrame.getContentPane().remove(panelMain);
+        mainFrame.getContentPane().add(newGamePanel);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                mainFrame.revalidate();
+                mainFrame.repaint();
+            }
+        });
+    }
+
+    public void setGame(ConnectFourGame game) {
+        mainFrame.getContentPane().remove(newGamePanel);
+        mainFrame.getContentPane().add(panelMain);
+        mainFrame.revalidate();
+        mainFrame.repaint();
+        gameController.setNewGame(game);
+    }
+
+
 }
