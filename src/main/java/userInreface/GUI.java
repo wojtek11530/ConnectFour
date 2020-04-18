@@ -136,6 +136,8 @@ public class GUI implements UserInterface {
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
+                    JButton btn = (JButton) e.getComponent();
+                    btn.setIcon(arrowButtonImage);
                 }
 
                 @Override
@@ -300,6 +302,8 @@ public class GUI implements UserInterface {
 
             @Override
             public void mouseReleased(MouseEvent e) {
+                JButton btn = (JButton) e.getComponent();
+                btn.setIcon(exitBtnImage);
             }
 
             @Override
@@ -336,7 +340,8 @@ public class GUI implements UserInterface {
 
     private void createEndGamePanel() {
         infoGamePanel = new JPanel();
-        infoGamePanel.setLayout(new BorderLayout());
+        infoGamePanel.setBackground(BACKGROUND_COLOR);
+        //infoGamePanel.setLayout(new BorderLayout());
         infoGamePanel.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_UPPER_PANEL_HEIGHT));
         infoGamePanel.setBorder(BorderFactory.createEmptyBorder(5, 25, 15, 25));
 
@@ -344,7 +349,7 @@ public class GUI implements UserInterface {
         infoTextLabel.setFont(new Font("Verdana", Font.PLAIN, 32));
         infoTextLabel.setForeground(new Color(10, 78, 169));
 
-        infoGamePanel.add(infoTextLabel, BorderLayout.CENTER);
+        infoGamePanel.add(infoTextLabel);
     }
 
     private void createBoardNumbersPanel() {
@@ -412,7 +417,7 @@ public class GUI implements UserInterface {
         playersPanel.add(Box.createHorizontalGlue());
         playersPanel.add(centralPanel);
         playersPanel.add(Box.createHorizontalGlue());
-        playersPanel.add(redPlayerPanel); //, BorderLayout.LINE_END);
+        playersPanel.add(redPlayerPanel);
 
 
     }
@@ -431,6 +436,8 @@ public class GUI implements UserInterface {
         panelMain.remove(layeredGameBoard);
         createLayeredBoard();
         panelMain.add(layeredGameBoard, BorderLayout.CENTER);
+        upperPanel.remove(infoGamePanel);
+        upperPanel.add(panelBoardNumbers, BorderLayout.CENTER);
         mainFrame.setVisible(true);
 
         Player playerOne = gameStartObject.getPlayer1();
@@ -450,11 +457,14 @@ public class GUI implements UserInterface {
 
         Player nextPlayer = gameStartObject.getNextPlayer();
         drawPlayerArrow(nextPlayer);
+        activateButtons();
 
         if (!nextPlayer.isReal()) {
             deactivateButtons();
             final ComputerPlayer currentAIPlayer = (ComputerPlayer) nextPlayer;
             gameController.performAIMove(currentAIPlayer);
+        } else {
+            activateButtons();
         }
     }
 
@@ -469,6 +479,13 @@ public class GUI implements UserInterface {
             activateButtons();
         }
         drawPlayerArrow(nextPlayer);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                mainFrame.revalidate();
+                mainFrame.repaint();
+            }
+        });
 
         if (nextPlayer.getType() == PlayerType.AI) {
             final ComputerPlayer currentAIPlayer = (ComputerPlayer) nextPlayer;
@@ -529,7 +546,13 @@ public class GUI implements UserInterface {
         }
         upperPanel.remove(panelBoardNumbers);
         upperPanel.add(infoGamePanel, BorderLayout.CENTER);
-        upperPanel.revalidate();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                upperPanel.revalidate();
+                upperPanel.repaint();
+            }
+        });
+
     }
 
     public void printWrongMove() {
@@ -551,8 +574,12 @@ public class GUI implements UserInterface {
     public void setGame(ConnectFourGame game) {
         mainFrame.getContentPane().remove(newGamePanel);
         mainFrame.getContentPane().add(panelMain);
-        mainFrame.revalidate();
-        mainFrame.repaint();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                mainFrame.revalidate();
+                mainFrame.repaint();
+            }
+        });
         gameController.setNewGame(game);
     }
 

@@ -29,7 +29,7 @@ public class ConnectFourGame {
     public void initGame() {
         board.setBoardEmpty();
         winner = null;
-        currentPlayer = new Random().nextDouble() < 0.5 ? player1 : player2;
+        currentPlayer = player1;
     }
 
     public void swapPlayers() {

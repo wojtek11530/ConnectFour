@@ -144,11 +144,13 @@ public class NewGamePanel extends JPanel {
         public PlayerComboBox() {
             super();
             addItem("Human");
-            addItem("Computer");
+            addItem("MinMax 1");
+            addItem("MinMax 2");
+            addItem("MinMax 3");
+            addItem("MinMax 4");
+            addItem("MinMax 5");
             setFont(new Font("Verdana", Font.PLAIN, 28));
             setPreferredSize(new Dimension(200, 50));
-            //setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
-            //setBackground(BACKGROUND_COLOR);
         }
 
     }
@@ -179,15 +181,23 @@ public class NewGamePanel extends JPanel {
         Player newPlayer;
         String playerSetting = (String) playerComboBox.getSelectedItem();
         assert playerSetting != null;
-        switch (playerSetting) {
-            case "Computer":
-                newPlayer = new ComputerPlayer(token, PlayerType.AI);
-                AI ai = new MinMaxAI();
-                ((ComputerPlayer) newPlayer).setAi(ai);
-                break;
-            default:
-                newPlayer = new HumanPlayer(token, PlayerType.HUMAN);
-                break;
+
+        if (playerSetting.split(" ")[0].equals("MinMax")) {
+            int maxDepth = Integer.parseInt(playerSetting.split(" ")[1]);
+            newPlayer = new ComputerPlayer(token, PlayerType.AI);
+            AI ai = new MinMaxAI(maxDepth);
+            ((ComputerPlayer) newPlayer).setAi(ai);
+        } else {
+            switch (playerSetting) {
+                case "Computer":
+                    newPlayer = new ComputerPlayer(token, PlayerType.AI);
+                    AI ai = new MinMaxAI();
+                    ((ComputerPlayer) newPlayer).setAi(ai);
+                    break;
+                default:
+                    newPlayer = new HumanPlayer(token, PlayerType.HUMAN);
+                    break;
+            }
         }
         return newPlayer;
     }
