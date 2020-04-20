@@ -25,6 +25,10 @@ public class Board {
         return board;
     }
 
+    public void setBoard(Token[][] board) {
+        this.board = board;
+    }
+
     public Token[] getUppestRow() {
         return board[0];
     }

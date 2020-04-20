@@ -59,7 +59,7 @@ public class ConnectFourGame {
         } else return boardFull();
     }
 
-    public void determineWinnerPlayer(Token winningToken) {
+    private void determineWinnerPlayer(Token winningToken) {
         winner = winningToken == player1.getPlayerToken() ? player1 : player2;
     }
 

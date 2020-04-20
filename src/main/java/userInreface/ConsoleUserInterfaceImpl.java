@@ -54,7 +54,7 @@ public class ConsoleUserInterfaceImpl implements UserInterface {
 
         ComputerPlayer playerTwo = new ComputerPlayer(Token.RED, PlayerType.AI);
         AI ai = new MinMaxAI();
-       playerTwo.setAi(ai);
+        playerTwo.setAi(ai);
 
         gameController.setNewGame(new ConnectFourGame(playerOne, playerTwo));
     }
