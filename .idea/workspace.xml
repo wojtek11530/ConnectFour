@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="969d03f4-ebf4-4b6c-bf28-1c466755aa4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/game/ConnectFourGameTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/GameStateEvaluator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/GameStateEvaluatorImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai/MinMaxAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/MinMaxAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/ConnectFourGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/ConnectFourGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInreface/ConsoleUserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInreface/ConsoleUserInterfaceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +36,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -94,7 +94,20 @@
       <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\images" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ConnectFourGameTest">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="ConnectFour" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ConnectFourGameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ConnectFour" />
       <extension name="coverage">
@@ -121,22 +134,6 @@
       <option name="PACKAGE_NAME" value="game" />
       <option name="MAIN_CLASS_NAME" value="game.ConnectFourGameTest" />
       <option name="METHOD_NAME" value="evaluateState" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ConnectFourGameTest.winningColumn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ConnectFour" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="game" />
-      <option name="MAIN_CLASS_NAME" value="game.ConnectFourGameTest" />
-      <option name="METHOD_NAME" value="winningColumn" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -176,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ConnectFourGameTest" />
         <item itemvalue="JUnit.ConnectFourGameTest.evaluateState" />
         <item itemvalue="JUnit.ConnectFourGameTest.winningDiagonal" />
         <item itemvalue="JUnit.ConnectFourGameTest.winningRow" />
-        <item itemvalue="JUnit.ConnectFourGameTest.winningColumn" />
       </list>
     </recent_temporary>
   </component>
@@ -213,7 +210,7 @@
       <workItem from="1587126938962" duration="5098000" />
       <workItem from="1587138273987" duration="9300000" />
       <workItem from="1587203653354" duration="22883000" />
-      <workItem from="1587381428275" duration="3729000" />
+      <workItem from="1587381428275" duration="6998000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1586856606710</created>
@@ -243,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587241669549</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add unit tests for game functions">
+      <created>1587385204441</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1587385204441</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,17 +258,18 @@
     <MESSAGE value="Add basic feature of Connect Four&#10; - apply the game rules&#10; - implement random AI&#10; - implement GUI Connect Four game" />
     <MESSAGE value="Improve GUI" />
     <MESSAGE value="Correct GUI errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct GUI errors" />
+    <MESSAGE value="add unit tests for game functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add unit tests for game functions" />
   </component>
   <component name="WindowStateProjectService">
     <state x="599" y="268" key="#com.intellij.debugger.actions.ViewTextAction" timestamp="1587382138999">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="599" y="268" key="#com.intellij.debugger.actions.ViewTextAction/0.0.1536.824@0.0.1536.824" timestamp="1587382138999" />
-    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1587381632860">
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1587386202617">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587381632860" />
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587386202617" />
     <state x="303" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587142268512">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -285,22 +290,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="380" y="119" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1586856545036" />
-    <state width="1493" height="248" key="GridCell.Tab.0.bottom" timestamp="1587385177413">
+    <state width="1493" height="141" key="GridCell.Tab.0.bottom" timestamp="1587388441885">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="248" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587385177413" />
-    <state width="1493" height="248" key="GridCell.Tab.0.center" timestamp="1587385177413">
+    <state width="1493" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587388441885" />
+    <state width="1493" height="141" key="GridCell.Tab.0.center" timestamp="1587388441885">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="248" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587385177413" />
-    <state width="1493" height="248" key="GridCell.Tab.0.left" timestamp="1587385177413">
+    <state width="1493" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587388441885" />
+    <state width="1493" height="141" key="GridCell.Tab.0.left" timestamp="1587388441884">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="248" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587385177413" />
-    <state width="1493" height="248" key="GridCell.Tab.0.right" timestamp="1587385177413">
+    <state width="1493" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587388441884" />
+    <state width="1493" height="141" key="GridCell.Tab.0.right" timestamp="1587388441885">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="248" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587385177413" />
+    <state width="1493" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587388441885" />
     <state width="1493" height="401" key="GridCell.Tab.1.bottom" timestamp="1587385095275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -333,14 +338,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1587147025793" />
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587388485087">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1587388485087" />
     <state x="533" y="116" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1587381833487">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="533" y="116" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1587381833487" />
-    <state x="740" y="274" width="538" height="495" key="extract.method.dialog" timestamp="1587232008992">
+    <state x="740" y="274" width="538" height="495" key="extract.method.dialog" timestamp="1587388347213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="740" y="274" width="538" height="495" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1587232008992" />
+    <state x="740" y="274" width="538" height="495" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1587388347213" />
     <state x="511" y="32" key="refactoring.ChangeSignatureDialog" timestamp="1587205798308">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -349,16 +358,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587235177097" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/game/ConnectFourGame.java</url>
-          <line>167</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

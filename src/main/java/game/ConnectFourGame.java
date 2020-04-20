@@ -14,16 +14,20 @@ public class ConnectFourGame {
     private Player currentPlayer;
     private Player winner;
 
+    private GameStateEvaluator evaluator;
+
     public ConnectFourGame() {
         board = new Board();
         player1 = new ComputerPlayer(Token.YELLOW, PlayerType.AI);
         player2 = new HumanPlayer(Token.RED, PlayerType.HUMAN);
+        evaluator = new GameStateEvaluatorImpl();
     }
 
     public ConnectFourGame(Player playerOne, Player playerTwo) {
         board = new Board();
         player1 = playerOne;
         player2 = playerTwo;
+        evaluator = new GameStateEvaluatorImpl();
     }
 
     public void initGame() {
@@ -123,79 +127,8 @@ public class ConnectFourGame {
 
 
     public int evaluateState() {
-        int yellowEvaluation = 0;
-        int redEvaluation = 0;
-
-        Token winningToken = winning();
-        if (winningToken != null) {
-            if (winningToken == Token.YELLOW) {
-                yellowEvaluation += 1000;
-            } else if (winningToken == Token.RED){
-                redEvaluation += 1000;
-            }
-        }
-
-        yellowEvaluation += 10 * countThreeInLine(Token.YELLOW) + countTwoInLine(Token.YELLOW);
-        redEvaluation += 10 * countThreeInLine(Token.RED) + countTwoInLine(Token.RED);
-
-        return redEvaluation - yellowEvaluation;
+        return evaluator.evaluateGame(getBoard());
     }
-
-    private int countTwoInLine(Token token) {
-        int count = 0;
-
-        Token[][] boardFields = board.getBoard();
-        int[][] directions = {{1, 0}, {1, -1}, {1, 1}, {0, 1}};
-
-        for (int[] d : directions) {
-            int rowDirection = d[0];
-            int colDirection = d[1];
-            for (int rowIndex = 0; rowIndex < Board.ROW_NUMBER; rowIndex++) {
-                for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
-                    int lastRowIndex = rowIndex + rowDirection;
-                    int lastColIndex = colIndex + colDirection;
-                    if (0 <= lastRowIndex && lastRowIndex < Board.ROW_NUMBER && 0 <= lastColIndex && lastColIndex < Board.COLUMNS_NUMBER) {
-                        Token currentToken = boardFields[rowIndex][colIndex];
-                        if (currentToken == token
-                                && currentToken == boardFields[rowIndex + rowDirection][colIndex + colDirection])
-                        {
-                            count++;
-                        }
-                    }
-                }
-            }
-        }
-        return count;
-    }
-
-    private int countThreeInLine(Token token) {
-        int count = 0;
-
-        Token[][] boardFields = board.getBoard();
-        int[][] directions = {{1, 0}, {1, -1}, {1, 1}, {0, 1}};
-
-        for (int[] d : directions) {
-            int rowDirection = d[0];
-            int colDirection = d[1];
-            for (int rowIndex = 0; rowIndex < Board.ROW_NUMBER; rowIndex++) {
-                for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
-                    int lastRowIndex = rowIndex + 2 * rowDirection;
-                    int lastColIndex = colIndex + 2 * colDirection;
-                    if (0 <= lastRowIndex && lastRowIndex < Board.ROW_NUMBER && 0 <= lastColIndex && lastColIndex < Board.COLUMNS_NUMBER) {
-                        Token currentToken = boardFields[rowIndex][colIndex];
-                        if (currentToken == token
-                                && currentToken == boardFields[rowIndex + rowDirection][colIndex + colDirection]
-                                && currentToken == boardFields[rowIndex + 2 * rowDirection][colIndex + 2 * colDirection])
-                        {
-                            count++;
-                        }
-                    }
-                }
-            }
-        }
-        return count;
-    }
-
 
     public Board getBoard() {
         return board;
@@ -224,6 +157,4 @@ public class ConnectFourGame {
     public void setWinner(Player winner) {
         this.winner = winner;
     }
-
-
 }

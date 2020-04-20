@@ -149,6 +149,7 @@ public class NewGamePanel extends JPanel {
             addItem("MinMax 3");
             addItem("MinMax 4");
             addItem("MinMax 5");
+            addItem("MinMax 6");
             setFont(new Font("Verdana", Font.PLAIN, 28));
             setPreferredSize(new Dimension(200, 50));
         }
