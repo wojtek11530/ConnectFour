@@ -1,4 +1,8 @@
-package game;
+package ai;
+
+import ai.GameStateEvaluator;
+import game.Board;
+import game.Token;
 
 public class GameStateEvaluatorImpl implements GameStateEvaluator {
 

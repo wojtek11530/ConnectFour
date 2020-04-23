@@ -1,4 +1,6 @@
-package game;
+package ai;
+
+import game.Board;
 
 public interface GameStateEvaluator {
 

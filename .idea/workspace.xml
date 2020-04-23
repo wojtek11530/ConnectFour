@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="969d03f4-ebf4-4b6c-bf28-1c466755aa4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/GameStateEvaluator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/GameStateEvaluatorImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/AlphaBetaAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ai/MinMaxAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/MinMaxAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/ConnectFourGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/ConnectFourGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameStateEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/GameStateEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/GameStateEvaluatorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/GameStateEvaluatorImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +87,9 @@
       <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\images" />
       <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\imagesBig" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ai" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -112,7 +115,7 @@
       <module name="ConnectFour" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="game.*" />
+          <option name="PATTERN" value="ai.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -127,7 +130,7 @@
       <module name="ConnectFour" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="game.*" />
+          <option name="PATTERN" value="ai.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,7 +146,7 @@
       <module name="ConnectFour" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="game.*" />
+          <option name="PATTERN" value="ai.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -159,7 +162,7 @@
       <module name="ConnectFour" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="game.*" />
+          <option name="PATTERN" value="ai.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -210,7 +213,8 @@
       <workItem from="1587126938962" duration="5098000" />
       <workItem from="1587138273987" duration="9300000" />
       <workItem from="1587203653354" duration="22883000" />
-      <workItem from="1587381428275" duration="6998000" />
+      <workItem from="1587381428275" duration="7215000" />
+      <workItem from="1587476712221" duration="1516000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1586856606710</created>
@@ -247,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587385204441</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add GameStateEvaluator">
+      <created>1587388510064</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1587388510064</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,17 +270,26 @@
     <MESSAGE value="Improve GUI" />
     <MESSAGE value="Correct GUI errors" />
     <MESSAGE value="add unit tests for game functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="add unit tests for game functions" />
+    <MESSAGE value="add GameStateEvaluator" />
+    <option name="LAST_COMMIT_MESSAGE" value="add GameStateEvaluator" />
   </component>
   <component name="WindowStateProjectService">
     <state x="599" y="268" key="#com.intellij.debugger.actions.ViewTextAction" timestamp="1587382138999">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="599" y="268" key="#com.intellij.debugger.actions.ViewTextAction/0.0.1536.824@0.0.1536.824" timestamp="1587382138999" />
-    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1587386202617">
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1587477423667">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587386202617" />
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587477423667" />
+    <state x="499" y="194" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1587388608276">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="194" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1587388608276" />
+    <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1587388609485">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1587388609485" />
     <state x="303" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587142268512">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -278,10 +298,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="929" y="174" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1587229115829" />
-    <state x="232" y="0" key="CommitChangelistDialog2" timestamp="1587385199326">
+    <state x="232" y="0" key="CommitChangelistDialog2" timestamp="1587388507518">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="232" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587385199326" />
+    <state x="232" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587388507518" />
     <state x="478" y="307" width="419" height="210" key="Github.ShareDialog" timestamp="1586856533025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -290,38 +310,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="380" y="119" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1586856545036" />
-    <state width="1493" height="141" key="GridCell.Tab.0.bottom" timestamp="1587388441885">
+    <state width="1493" height="401" key="GridCell.Tab.0.bottom" timestamp="1587388654298">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587388441885" />
-    <state width="1493" height="141" key="GridCell.Tab.0.center" timestamp="1587388441885">
+    <state width="1493" height="401" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587388654298" />
+    <state width="1493" height="401" key="GridCell.Tab.0.center" timestamp="1587388654298">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587388441885" />
-    <state width="1493" height="141" key="GridCell.Tab.0.left" timestamp="1587388441884">
+    <state width="1493" height="401" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587388654298" />
+    <state width="1493" height="401" key="GridCell.Tab.0.left" timestamp="1587388654297">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587388441884" />
-    <state width="1493" height="141" key="GridCell.Tab.0.right" timestamp="1587388441885">
+    <state width="1493" height="401" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587388654297" />
+    <state width="1493" height="401" key="GridCell.Tab.0.right" timestamp="1587388654298">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587388441885" />
-    <state width="1493" height="401" key="GridCell.Tab.1.bottom" timestamp="1587385095275">
+    <state width="1493" height="401" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587388654298" />
+    <state width="1493" height="401" key="GridCell.Tab.1.bottom" timestamp="1587388654298">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587385095275" />
-    <state width="1493" height="401" key="GridCell.Tab.1.center" timestamp="1587385095275">
+    <state width="1493" height="401" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587388654298" />
+    <state width="1493" height="401" key="GridCell.Tab.1.center" timestamp="1587388654298">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587385095275" />
-    <state width="1493" height="401" key="GridCell.Tab.1.left" timestamp="1587385095275">
+    <state width="1493" height="401" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587388654298" />
+    <state width="1493" height="401" key="GridCell.Tab.1.left" timestamp="1587388654298">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587385095275" />
-    <state width="1493" height="401" key="GridCell.Tab.1.right" timestamp="1587385095275">
+    <state width="1493" height="401" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587388654298" />
+    <state width="1493" height="401" key="GridCell.Tab.1.right" timestamp="1587388654298">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587385095275" />
+    <state width="1493" height="401" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587388654298" />
     <state x="584" y="347" key="ReplaceDuplicatesPrompt" timestamp="1587231975494">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

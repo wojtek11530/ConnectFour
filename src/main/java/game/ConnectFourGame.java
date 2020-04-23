@@ -1,8 +1,8 @@
 package game;
 
+import ai.GameStateEvaluator;
+import ai.GameStateEvaluatorImpl;
 import gameControl.GameMoveObject;
-
-import java.util.Random;
 
 public class ConnectFourGame {
 
