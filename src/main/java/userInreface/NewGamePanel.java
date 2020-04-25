@@ -1,6 +1,8 @@
 package userInreface;
 
 import ai.AI;
+import ai.GameStateEvaluator;
+import ai.GameStateEvaluatorImpl;
 import ai.MinMaxAI;
 import game.*;
 
@@ -14,6 +16,7 @@ import java.net.URL;
 
 public class NewGamePanel extends JPanel {
 
+
     private GUI parentGUI;
 
     private final Color BACKGROUND_COLOR = new java.awt.Color(240, 234, 220);
@@ -21,6 +24,9 @@ public class NewGamePanel extends JPanel {
     private final PlayerComboBox playerOneComboBox;
     private final PlayerComboBox playerTwoComboBox;
 
+    private ParameterEditComponent fourInLineParameterEditor;
+    private ParameterEditComponent threeInLineParameterEditor;
+    private ParameterEditComponent twoInLineParameterEditor;
 
     private URL smallYellowTokenUrl = getClass().getResource("/images/YellowTokenSmall.png");
     private ImageIcon smallYellowTokenImage = new ImageIcon(smallYellowTokenUrl);
@@ -61,7 +67,7 @@ public class NewGamePanel extends JPanel {
         yellowPLayerPanel.setBackground(BACKGROUND_COLOR);
 
         JLabel imageYellowTokenLabel = new JLabel(smallYellowTokenImage);
-        JLabel playerOneLabel = new PlayerLabel("Player 1:");
+        JLabel playerOneLabel = new TextLabel("Player 1:");
         playerOneComboBox = new PlayerComboBox();
 
         yellowPLayerPanel.add(imageYellowTokenLabel, BorderLayout.LINE_START);
@@ -77,7 +83,7 @@ public class NewGamePanel extends JPanel {
         redPLayerPanel.setLayout(new BorderLayout());
 
         JLabel imageRedTokenLabel = new JLabel(smallRedTokenImage);
-        JLabel playerTwoLabel = new PlayerLabel("Player 2:");
+        JLabel playerTwoLabel = new TextLabel("Player 2:");
         playerTwoComboBox = new PlayerComboBox();
 
         redPLayerPanel.add(imageRedTokenLabel, BorderLayout.LINE_START);
@@ -86,8 +92,24 @@ public class NewGamePanel extends JPanel {
         playerTwoSettingPanel.add(redPLayerPanel);
         playerTwoSettingPanel.add(playerTwoComboBox);
 
+
+        JPanel parametersPanel = new JPanel();
+        parametersPanel.setLayout(new BoxLayout(parametersPanel, BoxLayout.Y_AXIS));
+        parametersPanel.setBackground(BACKGROUND_COLOR);
+        int parametersPanelSideMargin = 30;
+        parametersPanel.setBorder(BorderFactory.createEmptyBorder(40, parametersPanelSideMargin, 0, parametersPanelSideMargin));
+
+        fourInLineParameterEditor = new ParameterEditComponent("4-in-line weight", 1000);
+        threeInLineParameterEditor = new ParameterEditComponent("3-in-line weight", 10);
+        twoInLineParameterEditor = new ParameterEditComponent("2-in-line weight", 1);
+        parametersPanel.add(fourInLineParameterEditor);
+        parametersPanel.add(threeInLineParameterEditor);
+        parametersPanel.add(twoInLineParameterEditor);
+
         centerPanel.add(playerOneSettingPanel);
         centerPanel.add(playerTwoSettingPanel);
+        centerPanel.add(parametersPanel);
+
 
         JPanel lowerPanel = new JPanel();
         lowerPanel.setBackground(BACKGROUND_COLOR);
@@ -129,9 +151,9 @@ public class NewGamePanel extends JPanel {
             }
         });
 
-        startGameBtn.addActionListener(new StartBtmActionListener());
+        startGameBtn.addActionListener(new StartBtmActionListener(this));
 
-        lowerPanel.setBorder(BorderFactory.createEmptyBorder(50, 30, 30, 30));
+        lowerPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 30, 30));
         lowerPanel.add(startGameBtn);
 
         add(titleLabel, BorderLayout.NORTH);
@@ -156,25 +178,86 @@ public class NewGamePanel extends JPanel {
 
     }
 
-    private class PlayerLabel extends JLabel {
-        public PlayerLabel(String string) {
+    private class TextLabel extends JLabel {
+
+        public TextLabel(String string, int width) {
             super(string);
             setFont(new Font("Verdana", Font.PLAIN, 28));
             setForeground(new Color(10, 78, 169));
-            setPreferredSize(new Dimension(170, 50));
+            setPreferredSize(new Dimension(width, 50));
             setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 0));
+        }
+
+        public TextLabel(String string) {
+            this(string, 170);
+        }
+    }
+
+    private class TextField extends JTextField {
+        public TextField() {
+            super(5);
+            setFont(new Font("Verdana", Font.PLAIN, 28));
+            setMaximumSize(new Dimension(10, 50));
+        }
+    }
+
+    private class ParameterEditComponent extends JPanel {
+
+        private JTextField parameterValueEdit;
+
+        public ParameterEditComponent(String parameterName, int defaultValue) {
+            super();
+            setBackground(BACKGROUND_COLOR);
+            setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+            JLabel parameterLabel = new TextLabel(parameterName, 270);
+            parameterValueEdit = new TextField();
+            parameterValueEdit.setText(String.valueOf(defaultValue));
+            parameterValueEdit.setHorizontalAlignment(SwingConstants.RIGHT);
+            parameterValueEdit.setBorder(BorderFactory.createCompoundBorder(
+                    parameterValueEdit.getBorder(),
+                    BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+            add(parameterLabel);
+            add(parameterValueEdit);
+            add(Box.createHorizontalGlue());
+        }
+
+        public JTextField getParameterValueEdit() {
+            return parameterValueEdit;
         }
     }
 
 
     private class StartBtmActionListener implements ActionListener {
 
+        JPanel panel;
+
+        public StartBtmActionListener(NewGamePanel newGamePanel) {
+            this.panel = newGamePanel;
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             Player playerOne = getPlayerFromSettings(playerOneComboBox, Token.YELLOW);
             Player playerTwo = getPlayerFromSettings(playerTwoComboBox, Token.RED);
-            ConnectFourGame game = new ConnectFourGame(playerOne, playerTwo);
-            parentGUI.setGame(game);
+            GameStateEvaluator evaluator = getGameEvaluatorFromSettings();
+            if (evaluator == null) {
+                JOptionPane.showMessageDialog(panel, "Incorrect parameters given. Try again.", "Wrong input",
+                        JOptionPane.WARNING_MESSAGE);
+            } else {
+                ConnectFourGame game = new ConnectFourGame(playerOne, playerTwo, evaluator);
+                parentGUI.setGame(game);
+            }
+        }
+    }
+
+    private GameStateEvaluator getGameEvaluatorFromSettings() {
+        try {
+            int fourInLineWeight = Integer.parseInt(fourInLineParameterEditor.getParameterValueEdit().getText());
+            int threeInLineWeight = Integer.parseInt(threeInLineParameterEditor.getParameterValueEdit().getText());
+            int twoInLineWeight = Integer.parseInt(twoInLineParameterEditor.getParameterValueEdit().getText());
+            return new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        } catch (NumberFormatException e) {
+            return null;
         }
     }
 

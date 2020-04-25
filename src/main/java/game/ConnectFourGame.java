@@ -30,6 +30,13 @@ public class ConnectFourGame {
         evaluator = new GameStateEvaluatorImpl();
     }
 
+    public ConnectFourGame(Player playerOne, Player playerTwo, GameStateEvaluator gameStateEvaluator) {
+        board = new Board();
+        player1 = playerOne;
+        player2 = playerTwo;
+        evaluator = gameStateEvaluator;
+    }
+
     public void initGame() {
         board.setBoardEmpty();
         winner = null;

@@ -1,14 +1,22 @@
 package ai;
 
-import ai.GameStateEvaluator;
 import game.Board;
 import game.Token;
 
 public class GameStateEvaluatorImpl implements GameStateEvaluator {
 
-    public static final int FOUR_IN_LINE_WEIGHT = 1000;
-    public static final int THREE_IN_LINE_WEIGHT = 10;
-    public static final int TWO_IN_LINE_WEIGHT = 1;
+    private int fourInLineWeight = 1000;
+    private int threeInLineWeight = 10;
+    private int twoInLineWeight = 1;
+
+    public GameStateEvaluatorImpl() {
+    }
+
+    public GameStateEvaluatorImpl(int fourInLineWeight, int threeInLineWeight, int twoInLineWeight) {
+        this.fourInLineWeight = fourInLineWeight;
+        this.threeInLineWeight = threeInLineWeight;
+        this.twoInLineWeight = twoInLineWeight;
+    }
 
     @Override
     public int evaluateGame(Board board) {
@@ -19,9 +27,9 @@ public class GameStateEvaluatorImpl implements GameStateEvaluator {
 
     private int getEvaluationForTokenColor(Token token, Board board) {
         int evaluation = 0;
-        evaluation += FOUR_IN_LINE_WEIGHT * countInLine(board, token, 4);
-        evaluation += THREE_IN_LINE_WEIGHT * countInLine(board, token, 3);
-        evaluation += TWO_IN_LINE_WEIGHT * countInLine(board, token, 2);
+        evaluation += fourInLineWeight * countInLine(board, token, 4);
+        evaluation += threeInLineWeight * countInLine(board, token, 3);
+        evaluation += twoInLineWeight * countInLine(board, token, 2);
         return evaluation;
     }
 

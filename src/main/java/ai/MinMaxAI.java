@@ -8,34 +8,6 @@ import gameControl.GameMoveObject;
 
 import java.util.Random;
 
-/*
-PSEUDOKOD
-
-function minimax(game, depth):
-
-    if game state is a terminal state or depth > MAX_DEPTH:
-        return value of the board
-
-    isMaximizingPlayer = game.currentPLayer.isMaximizing()
-
-    if isMaximizingPlayer:             // RED player case
-        bestVal = -INFINITY
-        for each move in game.board :
-            value = minimax(game, depth+1)
-            bestVal = max(bestVal, value)
-        return bestVal
-
-    else:                              // YELLOW player case
-        bestVal = +INFINITY
-        for each move in game.board :
-            value = minimax(game, depth+1)
-            bestVal = min(bestVal, value)
-        return bestVal
-
- Początkowe wywołanie:
- minimax(game, 0)
- */
-
 
 public class MinMaxAI implements AI {
 
@@ -95,7 +67,7 @@ public class MinMaxAI implements AI {
 
         Player previousPlayer = game.getCurrentPlayer();
         if (game.isEnded() || depth > minmaxMaxDepth) {
-            return game.evaluateState();
+            return (int)(Math.pow(0.95, depth - 1) * game.evaluateState());
         } else {
             int bestResult;
 
