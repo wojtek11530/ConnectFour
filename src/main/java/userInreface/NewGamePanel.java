@@ -1,9 +1,6 @@
 package userInreface;
 
-import ai.AI;
-import ai.GameStateEvaluator;
-import ai.GameStateEvaluatorImpl;
-import ai.MinMaxAI;
+import ai.*;
 import game.*;
 
 import javax.swing.*;
@@ -17,12 +14,16 @@ import java.net.URL;
 public class NewGamePanel extends JPanel {
 
 
+
     private GUI parentGUI;
 
     private final Color BACKGROUND_COLOR = new java.awt.Color(240, 234, 220);
 
     private final PlayerComboBox playerOneComboBox;
     private final PlayerComboBox playerTwoComboBox;
+
+    private final DepthEditComponent playerOneAiDepthEdit;
+    private final DepthEditComponent playerTwoAiDepthEdit;
 
     private ParameterEditComponent fourInLineParameterEditor;
     private ParameterEditComponent threeInLineParameterEditor;
@@ -69,12 +70,14 @@ public class NewGamePanel extends JPanel {
         JLabel imageYellowTokenLabel = new JLabel(smallYellowTokenImage);
         JLabel playerOneLabel = new TextLabel("Player 1:");
         playerOneComboBox = new PlayerComboBox();
+        playerOneAiDepthEdit = new DepthEditComponent(3);
 
         yellowPLayerPanel.add(imageYellowTokenLabel, BorderLayout.LINE_START);
         yellowPLayerPanel.add(playerOneLabel, BorderLayout.CENTER);
 
         playerOneSettingPanel.add(yellowPLayerPanel);
         playerOneSettingPanel.add(playerOneComboBox);
+        playerOneSettingPanel.add(playerOneAiDepthEdit);
 
         JPanel playerTwoSettingPanel = new JPanel();
         playerTwoSettingPanel.setBackground(BACKGROUND_COLOR);
@@ -85,12 +88,14 @@ public class NewGamePanel extends JPanel {
         JLabel imageRedTokenLabel = new JLabel(smallRedTokenImage);
         JLabel playerTwoLabel = new TextLabel("Player 2:");
         playerTwoComboBox = new PlayerComboBox();
+        playerTwoAiDepthEdit = new DepthEditComponent(3);
 
         redPLayerPanel.add(imageRedTokenLabel, BorderLayout.LINE_START);
         redPLayerPanel.add(playerTwoLabel, BorderLayout.CENTER);
 
         playerTwoSettingPanel.add(redPLayerPanel);
         playerTwoSettingPanel.add(playerTwoComboBox);
+        playerTwoSettingPanel.add(playerTwoAiDepthEdit);
 
 
         JPanel parametersPanel = new JPanel();
@@ -166,14 +171,10 @@ public class NewGamePanel extends JPanel {
         public PlayerComboBox() {
             super();
             addItem("Human");
-            addItem("MinMax 1");
-            addItem("MinMax 2");
-            addItem("MinMax 3");
-            addItem("MinMax 4");
-            addItem("MinMax 5");
-            addItem("MinMax 6");
+            addItem("MinMax");
+            addItem("Alpha Beta");
             setFont(new Font("Verdana", Font.PLAIN, 28));
-            setPreferredSize(new Dimension(200, 50));
+            setPreferredSize(new Dimension(180, 50));
         }
 
     }
@@ -185,11 +186,11 @@ public class NewGamePanel extends JPanel {
             setFont(new Font("Verdana", Font.PLAIN, 28));
             setForeground(new Color(10, 78, 169));
             setPreferredSize(new Dimension(width, 50));
-            setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 0));
+            setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 0));
         }
 
         public TextLabel(String string) {
-            this(string, 170);
+            this(string, 150);
         }
     }
 
@@ -220,12 +221,25 @@ public class NewGamePanel extends JPanel {
             add(parameterValueEdit);
             add(Box.createHorizontalGlue());
         }
-
         public JTextField getParameterValueEdit() {
             return parameterValueEdit;
         }
     }
 
+    private class DepthEditComponent extends JTextField {
+
+        public DepthEditComponent(int defaultValue) {
+            super(String.valueOf(defaultValue));
+            setFont(new Font("Verdana", Font.PLAIN, 28));
+            setPreferredSize(new Dimension(50, 50));
+            setHorizontalAlignment(SwingConstants.RIGHT);
+            setBorder(BorderFactory.createCompoundBorder(
+                    getBorder(),
+                    BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+
+        }
+
+    }
 
     private class StartBtmActionListener implements ActionListener {
 
@@ -237,8 +251,8 @@ public class NewGamePanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Player playerOne = getPlayerFromSettings(playerOneComboBox, Token.YELLOW);
-            Player playerTwo = getPlayerFromSettings(playerTwoComboBox, Token.RED);
+            Player playerOne = getPlayerFromSettings(playerOneComboBox, playerOneAiDepthEdit, Token.YELLOW);
+            Player playerTwo = getPlayerFromSettings(playerTwoComboBox, playerTwoAiDepthEdit, Token.RED);
             GameStateEvaluator evaluator = getGameEvaluatorFromSettings();
             if (evaluator == null) {
                 JOptionPane.showMessageDialog(panel, "Incorrect parameters given. Try again.", "Wrong input",
@@ -261,26 +275,37 @@ public class NewGamePanel extends JPanel {
         }
     }
 
-    private Player getPlayerFromSettings(PlayerComboBox playerComboBox, Token token) {
+    private Player getPlayerFromSettings(PlayerComboBox playerComboBox, DepthEditComponent playerAiDepthEdit, Token token) {
         Player newPlayer;
         String playerSetting = (String) playerComboBox.getSelectedItem();
         assert playerSetting != null;
 
-        if (playerSetting.split(" ")[0].equals("MinMax")) {
-            int maxDepth = Integer.parseInt(playerSetting.split(" ")[1]);
-            newPlayer = new ComputerPlayer(token, PlayerType.AI);
-            AI ai = new MinMaxAI(maxDepth);
-            ((ComputerPlayer) newPlayer).setAi(ai);
+        if (playerSetting.equals("MinMax")) {
+            try {
+                newPlayer = new ComputerPlayer(token, PlayerType.AI);
+                int maxDepth = Integer.parseInt(playerAiDepthEdit.getText());
+                AI ai = new MinMaxAI(maxDepth);
+                ((ComputerPlayer) newPlayer).setAi(ai);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        else if (playerSetting.equals("Alpha Beta")) {
+            try {
+                newPlayer = new ComputerPlayer(token, PlayerType.AI);
+                int maxDepth = Integer.parseInt(playerAiDepthEdit.getText());
+                AI ai = new AlphaBetaAI(maxDepth);
+                ((ComputerPlayer) newPlayer).setAi(ai);
+            } catch (NumberFormatException e) {
+                return null;
+            }
         } else {
-            switch (playerSetting) {
-                case "Computer":
-                    newPlayer = new ComputerPlayer(token, PlayerType.AI);
-                    AI ai = new MinMaxAI();
-                    ((ComputerPlayer) newPlayer).setAi(ai);
-                    break;
-                default:
-                    newPlayer = new HumanPlayer(token, PlayerType.HUMAN);
-                    break;
+            if ("Computer".equals(playerSetting)) {
+                newPlayer = new ComputerPlayer(token, PlayerType.AI);
+                AI ai = new MinMaxAI();
+                ((ComputerPlayer) newPlayer).setAi(ai);
+            } else {
+                newPlayer = new HumanPlayer(token, PlayerType.HUMAN);
             }
         }
         return newPlayer;
