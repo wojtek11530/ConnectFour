@@ -67,7 +67,7 @@ public class MinMaxAI implements AI {
 
         Player previousPlayer = game.getCurrentPlayer();
         if (game.isEnded() || depth > minmaxMaxDepth) {
-            return (int)(Math.pow(0.95, depth - 1) * game.evaluateState());
+            return (int)(Math.pow(0.98, depth - 1) * game.evaluateState());
         } else {
             int bestResult;
 
