@@ -1,20 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="969d03f4-ebf4-4b6c-bf28-1c466755aa4e" name="Default Changelist" comment="" />
+    <list default="true" id="969d03f4-ebf4-4b6c-bf28-1c466755aa4e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai/AlphaBetaAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/AlphaBetaAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1aWfuAeUnKZ3yRLMZERHqppILjL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,9 +68,118 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="extract.method.default.visibility" value="packageLocal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/images" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="game" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\images" />
+      <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\imagesBig" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ai" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Wojtek\Studia\Informatyka\Semestr 6\Sztuczna Inteligencja i Inżynieria Wiedzy\Lista 3 Lab\ConnectFour\src\main\resources\images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="ConnectFour" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConnectFourGameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConnectFour" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="game" />
+      <option name="MAIN_CLASS_NAME" value="game.ConnectFourGameTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConnectFourGameTest.evaluateState" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConnectFour" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="game" />
+      <option name="MAIN_CLASS_NAME" value="game.ConnectFourGameTest" />
+      <option name="METHOD_NAME" value="evaluateState" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConnectFourGameTest.winningDiagonal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConnectFour" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="game" />
+      <option name="MAIN_CLASS_NAME" value="game.ConnectFourGameTest" />
+      <option name="METHOD_NAME" value="winningDiagonal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConnectFourGameTest.winningRow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ConnectFour" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="game" />
+      <option name="MAIN_CLASS_NAME" value="game.ConnectFourGameTest" />
+      <option name="METHOD_NAME" value="winningRow" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ConnectFourGameTest" />
+        <item itemvalue="JUnit.ConnectFourGameTest.evaluateState" />
+        <item itemvalue="JUnit.ConnectFourGameTest.winningDiagonal" />
+        <item itemvalue="JUnit.ConnectFourGameTest.winningRow" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -53,14 +203,121 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586856490790</updated>
-      <workItem from="1586856495100" duration="23000" />
+      <workItem from="1586856495100" duration="19981000" />
+      <workItem from="1586936159744" duration="11532000" />
+      <workItem from="1586948599361" duration="13069000" />
+      <workItem from="1587032381689" duration="19000" />
+      <workItem from="1587126938962" duration="5098000" />
+      <workItem from="1587138273987" duration="9300000" />
+      <workItem from="1587203653354" duration="22883000" />
+      <workItem from="1587381428275" duration="7215000" />
+      <workItem from="1587476712221" duration="1516000" />
+      <workItem from="1587644976328" duration="1661000" />
+      <workItem from="1587818394518" duration="5711000" />
+      <workItem from="1588063647278" duration="3508000" />
     </task>
+    <task id="LOCAL-00001" summary="Init commit">
+      <created>1586856606710</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586856606710</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add basic feature of Connect Four&#10; - apply the game rules&#10; - implement random AI&#10; - implement GUI Connect Four game">
+      <created>1586950557708</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586950557708</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Improve GUI">
+      <created>1587239897322</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587239897322</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Correct GUI errors">
+      <created>1587241669549</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1587241669549</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add unit tests for game functions">
+      <created>1587385204441</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1587385204441</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add GameStateEvaluator">
+      <created>1587388510064</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1587388510064</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add pseudocode of ai algorithms">
+      <created>1587645040005</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1587645040005</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add editing parameters of evaluation function">
+      <created>1587824111143</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1587824111143</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init commit" />
+    <MESSAGE value="Add basic feature of Connect Four&#10; - apply the game rules&#10; - implement random AI&#10; - implement GUI Connect Four game" />
+    <MESSAGE value="Improve GUI" />
+    <MESSAGE value="Correct GUI errors" />
+    <MESSAGE value="add unit tests for game functions" />
+    <MESSAGE value="add GameStateEvaluator" />
+    <MESSAGE value="add pseudocode of ai algorithms" />
+    <MESSAGE value="add editing parameters of evaluation function" />
+    <option name="LAST_COMMIT_MESSAGE" value="add editing parameters of evaluation function" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="599" y="268" key="#com.intellij.debugger.actions.ViewTextAction" timestamp="1587382138999">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="599" y="268" key="#com.intellij.debugger.actions.ViewTextAction/0.0.1536.824@0.0.1536.824" timestamp="1587382138999" />
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1588063875279">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1588063875279" />
+    <state x="499" y="194" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1587388608276">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="194" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1587388608276" />
+    <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1587388609485">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1587388609485" />
+    <state x="303" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587142268512">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="303" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1587142268512" />
+    <state x="929" y="174" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587229115829">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="929" y="174" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1587229115829" />
+    <state x="232" y="0" key="CommitChangelistDialog2" timestamp="1587824108564">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="232" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587824108564" />
     <state x="478" y="307" width="419" height="210" key="Github.ShareDialog" timestamp="1586856533025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -69,5 +326,73 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="380" y="119" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1586856545036" />
+    <state width="1493" height="141" key="GridCell.Tab.0.bottom" timestamp="1588067425919">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588067425919" />
+    <state width="1493" height="141" key="GridCell.Tab.0.center" timestamp="1588067425918">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588067425918" />
+    <state width="1493" height="141" key="GridCell.Tab.0.left" timestamp="1588067425918">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588067425918" />
+    <state width="1493" height="141" key="GridCell.Tab.0.right" timestamp="1588067425918">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588067425918" />
+    <state width="1493" height="401" key="GridCell.Tab.1.bottom" timestamp="1587824112720">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="401" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587824112720" />
+    <state width="1493" height="401" key="GridCell.Tab.1.center" timestamp="1587824112720">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="401" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587824112720" />
+    <state width="1493" height="401" key="GridCell.Tab.1.left" timestamp="1587824112720">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="401" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587824112720" />
+    <state width="1493" height="401" key="GridCell.Tab.1.right" timestamp="1587824112720">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="401" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587824112720" />
+    <state x="584" y="347" key="ReplaceDuplicatesPrompt" timestamp="1587231975494">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="584" y="347" key="ReplaceDuplicatesPrompt/0.0.1536.824@0.0.1536.824" timestamp="1587231975494" />
+    <state x="277" y="56" key="SettingsEditor" timestamp="1586880371970">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586880371970" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1586856612300">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1586856612300" />
+    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1587147025794">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1587147025793" />
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587388485087">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1587388485087" />
+    <state x="533" y="116" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1587381833487">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="533" y="116" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1587381833487" />
+    <state x="740" y="274" width="538" height="495" key="extract.method.dialog" timestamp="1587388347213">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="740" y="274" width="538" height="495" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1587388347213" />
+    <state x="511" y="32" key="refactoring.ChangeSignatureDialog" timestamp="1588066274829">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="511" y="32" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1588066274829" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1587820947299">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587820947299" />
   </component>
 </project>
