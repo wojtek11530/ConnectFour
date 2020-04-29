@@ -148,4 +148,9 @@ public class AlphaBetaAI implements AI {
             return bestResult;
         }
     }
+
+    @Override
+    public String toString() {
+        return "AlphaBeta_" + minmaxMaxDepth;
+    }
 }

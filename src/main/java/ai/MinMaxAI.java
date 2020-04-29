@@ -102,4 +102,10 @@ public class MinMaxAI implements AI {
             return bestResult;
         }
     }
+
+
+    @Override
+    public String toString() {
+        return "MinMax_" + minmaxMaxDepth;
+    }
 }

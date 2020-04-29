@@ -73,4 +73,12 @@ public class GameStateEvaluatorImpl implements GameStateEvaluator {
         }
         return theSameTokensInLine;
     }
+
+    @Override
+    public String toString() {
+        return "NumInLineEval" +
+                "_4w=" + fourInLineWeight +
+                "_3w=" + threeInLineWeight +
+                "_2w=" + twoInLineWeight;
+    }
 }
