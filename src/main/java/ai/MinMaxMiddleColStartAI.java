@@ -1,0 +1,133 @@
+package ai;
+
+import game.Board;
+import game.ConnectFourGame;
+import game.Player;
+import game.Token;
+import gameControl.GameMoveObject;
+
+public class MinMaxMiddleColStartAI implements AI {
+
+
+
+    private int minmaxMaxDepth = 5;
+    private ConnectFourGame game;
+    private GameStateEvaluator evaluator;
+
+    public MinMaxMiddleColStartAI() {
+    }
+
+    public MinMaxMiddleColStartAI(int minmaxMaxDepth, GameStateEvaluator evaluator) {
+        this.minmaxMaxDepth = minmaxMaxDepth;
+        this.evaluator = evaluator;
+    }
+
+    @Override
+    public void setGame(ConnectFourGame game) {
+        this.game = game;
+    }
+
+    @Override
+    public int determineNextMove() {
+
+        Player currentPlayer = game.getCurrentPlayer();
+        Token currentToken = currentPlayer.getPlayerToken();
+
+        int column = 0;
+
+        if (boardIsEmpty()) {
+            column = 3;
+        }
+        else {
+            int bestResult;
+
+            if (currentToken == Token.RED) {
+                bestResult = Integer.MIN_VALUE;
+            } else {
+                bestResult = Integer.MAX_VALUE;
+            }
+
+            for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
+                if (game.putIntoColumnPossible(colIndex)) {
+                    GameMoveObject moveObject = game.putCurrentPlayerToken(colIndex);
+
+                    int minMaxResult = minMax(0);
+                    if (minMaxResult > bestResult && currentToken == Token.RED) {
+                        bestResult = minMaxResult;
+                        column = colIndex;
+                    } else if (minMaxResult < bestResult && currentToken == Token.YELLOW) {
+                        bestResult = minMaxResult;
+                        column = colIndex;
+                    }
+                    game.setEmptyField(moveObject.getLatMoveRow(), moveObject.getLastMoveCol());
+                    game.setCurrentPlayer(currentPlayer);
+                    game.setWinner(null);
+                }
+            }
+
+            game.setCurrentPlayer(currentPlayer);
+            game.setWinner(null);
+        }
+        return column;
+    }
+
+
+
+    public int minMax(int depth) {
+
+        Player previousPlayer = game.getCurrentPlayer();
+        if (game.isEnded() || depth > minmaxMaxDepth) {
+            return (int)(Math.pow(0.98, depth - 1) * evaluateState());
+        } else {
+            int bestResult;
+
+            game.swapPlayers();
+            Player currentPlayer = game.getCurrentPlayer();
+            Token currentToken = currentPlayer.getPlayerToken();
+
+            if (currentToken == Token.YELLOW) {
+                bestResult = Integer.MAX_VALUE;
+            } else {
+                bestResult = Integer.MIN_VALUE;
+            }
+
+            for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
+                if (game.putIntoColumnPossible(colIndex)) {
+                    GameMoveObject moveObject = game.putCurrentPlayerToken(colIndex);
+
+                    int minMaxResult = minMax(depth + 1);
+
+                    if (minMaxResult > bestResult && currentToken == Token.RED) {
+                        bestResult = minMaxResult;
+                    } else if (minMaxResult < bestResult && currentToken == Token.YELLOW) {
+                        bestResult = minMaxResult;
+                    }
+                    game.setCurrentPlayer(currentPlayer);
+                    game.setEmptyField(moveObject.getLatMoveRow(), moveObject.getLastMoveCol());
+                    game.setWinner(null);
+                }
+            }
+
+            game.setCurrentPlayer(previousPlayer);
+            return bestResult;
+        }
+    }
+
+    public int evaluateState() {
+        return evaluator.evaluateGame(game.getBoard());
+    }
+
+    private boolean boardIsEmpty() {
+        Token[] lowestRow = game.getBoard().getLowestRow();
+        boolean isEmpty = true;
+        for (Token token: lowestRow) {
+            isEmpty = isEmpty && token == Token.EMPTY;
+        }
+        return isEmpty;
+    }
+
+    @Override
+    public String toString() {
+        return "MinMax_MiddleStart_" + minmaxMaxDepth;
+    }
+}

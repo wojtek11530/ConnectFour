@@ -35,6 +35,10 @@ public class Board {
         return board[0];
     }
 
+    public Token[] getLowestRow() {
+        return board[5];
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

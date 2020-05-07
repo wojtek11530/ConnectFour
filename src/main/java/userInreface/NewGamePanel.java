@@ -262,8 +262,10 @@ public class NewGamePanel extends JPanel {
             addItem("Human");
             addItem("MinMax");
             addItem("Alpha Beta");
-            setFont(new Font("Verdana", Font.PLAIN, 28));
-            setPreferredSize(new Dimension(190, 50));
+            addItem("MinMax Middle Col Start");
+            addItem("Alpha Beta Middle Col Start");
+            setFont(new Font("Verdana", Font.PLAIN, 18));
+            setPreferredSize(new Dimension(260, 50));
             addActionListener(this);
         }
 
@@ -461,30 +463,33 @@ public class NewGamePanel extends JPanel {
         if (playerSetting.equals("Human")) {
             newPlayer = new HumanPlayer(token, PlayerType.HUMAN);
         } else {
-
             GameStateEvaluator evaluator = getPlayerAiGameEvaluatorFromSettings(lineEvalPlayerPanel);
             if (evaluator == null) {
                 return null;
             }
-            if (playerSetting.equals("MinMax")) {
-                try {
-                    newPlayer = new ComputerPlayer(token, PlayerType.AI);
-                    int maxDepth = Integer.parseInt(playerAiDepthEdit.getText());
-                    AI ai = new MinMaxAI(maxDepth, evaluator);
-                    ((ComputerPlayer) newPlayer).setAi(ai);
-                } catch (NumberFormatException e) {
-                    return null;
+            try {
+                newPlayer = new ComputerPlayer(token, PlayerType.AI);
+                int maxDepth = Integer.parseInt(playerAiDepthEdit.getText());
+                AI ai = null;
+                switch (playerSetting) {
+                    case "MinMax":
+                        ai = new MinMaxAI(maxDepth, evaluator);
+                        break;
+                    case "Alpha Beta":
+                        ai = new AlphaBetaAI(maxDepth, evaluator);
+                        break;
+                    case "MinMax Middle Col Start":
+                        ai = new MinMaxMiddleColStartAI(maxDepth, evaluator);
+                        break;
+                    default:
+                        ai = new AlphaBetaMiddleColStartAI(maxDepth, evaluator);
+                        break;
                 }
-            } else  {
-                try {
-                    newPlayer = new ComputerPlayer(token, PlayerType.AI);
-                    int maxDepth = Integer.parseInt(playerAiDepthEdit.getText());
-                    AI ai = new AlphaBetaAI(maxDepth, evaluator);
-                    ((ComputerPlayer) newPlayer).setAi(ai);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
+                ((ComputerPlayer) newPlayer).setAi(ai);
+            } catch (NumberFormatException e) {
+                return null;
             }
+
         }
         return newPlayer;
     }
