@@ -15,13 +15,14 @@ public class Simulations {
         int fourInLineWeight = 1000;
         int threeInLineWeight = 100;
         int twoInLineWeight = 10;
-        GameStateEvaluator evaluator = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        GameStateEvaluator evaluatorOne = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        GameStateEvaluator evaluatorTwo = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
 
         String aiAlgorithmType = "Alphabeta";
         int maxDepth = 5;
 
         try {
-            performSimulations(evaluator, aiAlgorithmType, aiAlgorithmType, maxDepth);
+            performSimulations(evaluatorOne, evaluatorTwo, aiAlgorithmType, aiAlgorithmType, maxDepth);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,35 +33,38 @@ public class Simulations {
         GameResearchController gameResearchController = new GameResearchController();
         String aiAlgorithmType = "Minmax";
 
+        int fourInLineWeight = 1000;
+        int threeInLineWeight = 100;
+        int twoInLineWeight = 10;
+        GameStateEvaluator evaluatorOne = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        GameStateEvaluator evaluatorTwo = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+
         int ai_one_depth = 4;
         int ai_two_depth = 4;
 
         AI playerOneAi;
         AI playerTwoAi;
         if (aiAlgorithmType.equals("Alphabeta")) {
-            playerOneAi = new AlphaBetaAI(ai_one_depth);
-            playerTwoAi = new AlphaBetaAI(ai_two_depth);
+            playerOneAi = new AlphaBetaAI(ai_one_depth, evaluatorOne);
+            playerTwoAi = new AlphaBetaAI(ai_two_depth, evaluatorTwo);
         } else {
-            playerOneAi = new MinMaxAI(ai_one_depth);
-            playerTwoAi = new MinMaxAI(ai_two_depth);
+            playerOneAi = new MinMaxAI(ai_one_depth, evaluatorOne);
+            playerTwoAi = new MinMaxAI(ai_two_depth, evaluatorTwo);
         }
 
-        int fourInLineWeight = 1000;
-        int threeInLineWeight = 100;
-        int twoInLineWeight = 10;
-        GameStateEvaluator evaluator = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
-
-        GameStatistics statistics = gameResearchController.startGame(playerOneAi, playerTwoAi, evaluator);
+        GameStatistics statistics = gameResearchController.startGame(playerOneAi, playerTwoAi);
         System.out.println(statistics);
         System.out.println(statistics.getGame().getBoard());
     }
 
 
-    private static void performSimulations(GameStateEvaluator evaluator, String aiPlayerOneAlgorithmType,
+    private static void performSimulations(GameStateEvaluator evaluatorOne, GameStateEvaluator evaluatorTwo,
+                                           String aiPlayerOneAlgorithmType,
                                            String aiPLayerTwoAlgorithmType, int maxDepth) throws IOException {
         GameResearchController gameResearchController = new GameResearchController();
 
-        String fileName = "Results_" + aiPlayerOneAlgorithmType + "_"  + aiPLayerTwoAlgorithmType + "_" + maxDepth + "_" + evaluator + ".csv";
+        String fileName = "Results_" + aiPlayerOneAlgorithmType + "_"  + evaluatorOne + "_" + aiPLayerTwoAlgorithmType +
+                "_"  + evaluatorTwo + "_" + maxDepth + "_"  + ".csv";
 
         FileWriter csvWriter = new FileWriter(fileName);
         csvWriter.append("players_one_ai");
@@ -87,18 +91,18 @@ public class Simulations {
                     AI playerOneAi;
                     AI playerTwoAi;
                     if (aiPlayerOneAlgorithmType.equals("Alphabeta")) {
-                        playerOneAi = new AlphaBetaAI(aiOneDepth);
+                        playerOneAi = new AlphaBetaAI(aiOneDepth, evaluatorOne);
                     } else {
-                        playerOneAi = new MinMaxAI(aiOneDepth);
+                        playerOneAi = new MinMaxAI(aiOneDepth, evaluatorOne);
                     }
 
                     if (aiPLayerTwoAlgorithmType.equals("Alphabeta")) {
-                        playerTwoAi = new AlphaBetaAI(aiTwoDepth);
+                        playerTwoAi = new AlphaBetaAI(aiTwoDepth, evaluatorTwo);
                     } else {
-                        playerTwoAi = new MinMaxAI(aiTwoDepth);
+                        playerTwoAi = new MinMaxAI(aiTwoDepth, evaluatorTwo);
                     }
 
-                    GameStatistics statistics = gameResearchController.startGame(playerOneAi, playerTwoAi, evaluator);
+                    GameStatistics statistics = gameResearchController.startGame(playerOneAi, playerTwoAi);
 
                     Player playerOne = statistics.getPlayerOne();
                     Player playerTwo = statistics.getPlayerTwo();

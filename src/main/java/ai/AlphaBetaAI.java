@@ -6,54 +6,21 @@ import game.Player;
 import game.Token;
 import gameControl.GameMoveObject;
 
-import static sun.swing.MenuItemLayoutHelper.max;
-
-/*
-PSEUDOKOD
-
-function alphaBeta(game, depth, alpha, beta):
-
-    if game state is a terminal state or depth > MAX_DEPTH:
-        return value of the board
-
-    isMaximizingPlayer = game.currentPLayer.isMaximizing()
-
-    if isMaximizingPlayer :             // RED player case
-        bestVal = -INFINITY
-        for each move in game.board :
-            value = alphaBeta(game, depth+1, alpha, beta)
-            bestVal = max(bestVal, value)
-            alpha = max(alpha, bestVal)
-            if beta <= alpha:
-                return alpha
-        return bestVal
-
-    else :                              // YELLOW player case
-        bestVal = +INFINITY
-        for each move in game.board :
-            value = alphaBeta(game, depth+1, alpha, beta)
-            bestVal = min( bestVal, value)
-            beta = min(beta, bestVal)
-            if beta <= alpha:
-                return beta
-        return bestVal
-
- Początkowe wywołanie:
- alphaBeta(game, 0, -INFINITY, +INFINITY)
- */
-
 
 public class AlphaBetaAI implements AI {
 
 
     private int minmaxMaxDepth = 5;
     private ConnectFourGame game;
+    private GameStateEvaluator evaluator;
+
 
     public AlphaBetaAI() {
     }
 
-    public AlphaBetaAI(int minmaxMaxDepth) {
+    public AlphaBetaAI(int minmaxMaxDepth, GameStateEvaluator evaluator) {
         this.minmaxMaxDepth = minmaxMaxDepth;
+        this.evaluator = evaluator;
     }
 
     @Override
@@ -102,7 +69,7 @@ public class AlphaBetaAI implements AI {
 
         Player previousPlayer = game.getCurrentPlayer();
         if (game.isEnded() || depth > minmaxMaxDepth) {
-            return (int)(Math.pow(0.98, depth - 1) * game.evaluateState());
+            return (int) (Math.pow(0.98, depth - 1) * evaluateState());
         } else {
             int bestResult;
 
@@ -147,6 +114,10 @@ public class AlphaBetaAI implements AI {
             game.setCurrentPlayer(previousPlayer);
             return bestResult;
         }
+    }
+
+    public int evaluateState() {
+        return evaluator.evaluateGame(game.getBoard());
     }
 
     @Override

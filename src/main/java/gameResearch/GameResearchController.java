@@ -19,8 +19,8 @@ public class GameResearchController {
     ConnectFourGame game;
     GameStatistics statistics;
 
-    public GameStatistics startGame(AI playerOneAi, AI playerTwoAi,  GameStateEvaluator evaluator) {
-        setNewGame(playerOneAi, playerTwoAi, evaluator);
+    public GameStatistics startGame(AI playerOneAi, AI playerTwoAi) {
+        setNewGame(playerOneAi, playerTwoAi);
         game.initGame();
         statistics.setStartingPlayer(game.getCurrentPlayer());
 
@@ -40,14 +40,14 @@ public class GameResearchController {
         return statistics;
     }
 
-    private void setNewGame(AI playerOneAi, AI playerTwoAi,  GameStateEvaluator evaluator) {
+    private void setNewGame(AI playerOneAi, AI playerTwoAi) {
         ComputerPlayer playerOne = new ComputerPlayer(Token.YELLOW, PlayerType.AI);
         playerOne.setAi(playerOneAi);
 
         ComputerPlayer playerTwo = new ComputerPlayer(Token.RED, PlayerType.AI);
         playerTwo.setAi(playerTwoAi);
 
-        game = new ConnectFourGame(playerOne, playerTwo, evaluator);
+        game = new ConnectFourGame(playerOne, playerTwo);
 
         playerOne.assignToGame(game);
         playerTwo.assignToGame(game);

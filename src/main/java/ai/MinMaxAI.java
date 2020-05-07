@@ -6,19 +6,19 @@ import game.Player;
 import game.Token;
 import gameControl.GameMoveObject;
 
-import java.util.Random;
-
 
 public class MinMaxAI implements AI {
 
     private int minmaxMaxDepth = 5;
     private ConnectFourGame game;
+    private GameStateEvaluator evaluator;
 
     public MinMaxAI() {
     }
 
-    public MinMaxAI(int minmaxMaxDepth) {
+    public MinMaxAI(int minmaxMaxDepth, GameStateEvaluator evaluator) {
         this.minmaxMaxDepth = minmaxMaxDepth;
+        this.evaluator = evaluator;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class MinMaxAI implements AI {
 
         Player previousPlayer = game.getCurrentPlayer();
         if (game.isEnded() || depth > minmaxMaxDepth) {
-            return (int)(Math.pow(0.98, depth - 1) * game.evaluateState());
+            return (int)(Math.pow(0.98, depth - 1) * evaluateState());
         } else {
             int bestResult;
 
@@ -103,6 +103,9 @@ public class MinMaxAI implements AI {
         }
     }
 
+    public int evaluateState() {
+        return evaluator.evaluateGame(game.getBoard());
+    }
 
     @Override
     public String toString() {

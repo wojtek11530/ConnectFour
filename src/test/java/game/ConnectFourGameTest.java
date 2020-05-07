@@ -227,30 +227,30 @@ class ConnectFourGameTest {
     }
 
 
-    @Test
-    void evaluateState() {
-        // O O O O O O O
-        // O O O O O O O
-        // O O O Y O O O
-        // O O Y R O O O
-        // O Y R R O O O
-        // Y R R Y O O O
-        Token[][] boardField = new Token[][]
-                {
-                        {Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY},
-                        {Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY},
-                        {Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.YELLOW, Token.EMPTY, Token.EMPTY, Token.EMPTY},
-                        {Token.EMPTY, Token.EMPTY, Token.YELLOW, Token.RED, Token.EMPTY, Token.EMPTY, Token.EMPTY},
-                        {Token.EMPTY, Token.YELLOW, Token.RED, Token.RED, Token.EMPTY, Token.EMPTY, Token.EMPTY},
-                        {Token.YELLOW, Token.RED, Token.RED, Token.YELLOW, Token.EMPTY, Token.EMPTY, Token.EMPTY},
-                };
-        board.setBoard(boardField);
-
-        // when
-        int evaluation = game.evaluateState();
-
-        // then
-        int expected = 7 * 1 + 1 * 10 - 1000 - 2 * 10 - 3 * 1;
-        assertEquals(expected, evaluation);
-    }
+//    @Test
+//    void evaluateState() {
+//        // O O O O O O O
+//        // O O O O O O O
+//        // O O O Y O O O
+//        // O O Y R O O O
+//        // O Y R R O O O
+//        // Y R R Y O O O
+//        Token[][] boardField = new Token[][]
+//                {
+//                        {Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY},
+//                        {Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.EMPTY},
+//                        {Token.EMPTY, Token.EMPTY, Token.EMPTY, Token.YELLOW, Token.EMPTY, Token.EMPTY, Token.EMPTY},
+//                        {Token.EMPTY, Token.EMPTY, Token.YELLOW, Token.RED, Token.EMPTY, Token.EMPTY, Token.EMPTY},
+//                        {Token.EMPTY, Token.YELLOW, Token.RED, Token.RED, Token.EMPTY, Token.EMPTY, Token.EMPTY},
+//                        {Token.YELLOW, Token.RED, Token.RED, Token.YELLOW, Token.EMPTY, Token.EMPTY, Token.EMPTY},
+//                };
+//        board.setBoard(boardField);
+//
+//        // when
+//        int evaluation = game.evaluateState();
+//
+//        // then
+//        int expected = 7 * 1 + 1 * 10 - 1000 - 2 * 10 - 3 * 1;
+//        assertEquals(expected, evaluation);
+//    }
 }
