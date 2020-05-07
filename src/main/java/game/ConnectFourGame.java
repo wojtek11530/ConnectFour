@@ -36,6 +36,13 @@ public class ConnectFourGame {
         currentPlayer = player1;
     }
 
+    public void initGameRandomPlayerBegins() {
+        board.setBoardEmpty();
+        winner = null;
+        currentPlayer = Math.random() < 0.5? player1 : player2;
+    }
+
+
     public void swapPlayers() {
         currentPlayer = currentPlayer == player1 ? player2 : player1;
     }
