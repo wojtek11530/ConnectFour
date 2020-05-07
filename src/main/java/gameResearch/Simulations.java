@@ -15,8 +15,8 @@ public class Simulations {
         int fourInLineWeight = 1000;
         int threeInLineWeight = 100;
         int twoInLineWeight = 10;
-        GameStateEvaluator evaluatorOne = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
-        GameStateEvaluator evaluatorTwo = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        GameStateEvaluator evaluatorOne = new AllLinesEvaluator(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        GameStateEvaluator evaluatorTwo = new AllLinesEvaluator(fourInLineWeight, threeInLineWeight, twoInLineWeight);
 
         String aiAlgorithmType = "Alphabeta";
         int maxDepth = 5;
@@ -36,8 +36,8 @@ public class Simulations {
         int fourInLineWeight = 1000;
         int threeInLineWeight = 100;
         int twoInLineWeight = 10;
-        GameStateEvaluator evaluatorOne = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
-        GameStateEvaluator evaluatorTwo = new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        GameStateEvaluator evaluatorOne = new AllLinesEvaluator(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        GameStateEvaluator evaluatorTwo = new AllLinesEvaluator(fourInLineWeight, threeInLineWeight, twoInLineWeight);
 
         int ai_one_depth = 4;
         int ai_two_depth = 4;

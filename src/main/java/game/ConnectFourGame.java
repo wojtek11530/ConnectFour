@@ -1,7 +1,7 @@
 package game;
 
 import ai.GameStateEvaluator;
-import ai.GameStateEvaluatorImpl;
+import ai.AllLinesEvaluator;
 import gameControl.GameMoveObject;
 
 public class ConnectFourGame {
@@ -20,7 +20,7 @@ public class ConnectFourGame {
         board = new Board();
         player1 = new ComputerPlayer(Token.YELLOW, PlayerType.AI);
         player2 = new HumanPlayer(Token.RED, PlayerType.HUMAN);
-        evaluator = new GameStateEvaluatorImpl();
+        evaluator = new AllLinesEvaluator();
     }
 
     public ConnectFourGame(Player playerOne, Player playerTwo) {

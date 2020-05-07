@@ -319,8 +319,9 @@ public class NewGamePanel extends JPanel {
     private class PlayerAiHeuristicComboBox extends JComboBox<String> implements ActionListener {
         public PlayerAiHeuristicComboBox() {
             super();
-            addItem("Line evaluator");
-            setFont(new Font("Verdana", Font.PLAIN, 20));
+            addItem("All lines eval.");
+            addItem("Threat. lines eval.");
+            setFont(new Font("Verdana", Font.PLAIN, 16));
             setBackground(BACKGROUND_COLOR);
             setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
         }
@@ -441,12 +442,20 @@ public class NewGamePanel extends JPanel {
     }
 
 
-    private GameStateEvaluator getPlayerAiGameEvaluatorFromSettings(LineEvalPlayerPanel lineEvalPlayerPanel) {
+    private GameStateEvaluator getPlayerAiGameEvaluatorFromSettings(PlayerAiHeuristicComboBox playerAiHeuristicComboBox, LineEvalPlayerPanel lineEvalPlayerPanel) {
         try {
             int fourInLineWeight = Integer.parseInt(lineEvalPlayerPanel.fourInLinePlayerParameterEditor.getParameterValueEdit().getText());
             int threeInLineWeight = Integer.parseInt(lineEvalPlayerPanel.threeInLinePlayerParameterEditor.getParameterValueEdit().getText());
             int twoInLineWeight = Integer.parseInt(lineEvalPlayerPanel.twoInLinePlayerParameterEditor.getParameterValueEdit().getText());
-            return new GameStateEvaluatorImpl(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+
+            String evaluator = (String) playerAiHeuristicComboBox.getSelectedItem();
+            assert evaluator != null;
+            if (evaluator.equals("All lines eval.")) {
+                return new AllLinesEvaluator(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+            } else {
+                return new ThreateningLinesEvaluator(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+            }
+
         } catch (NumberFormatException e) {
             return null;
         }
@@ -463,7 +472,7 @@ public class NewGamePanel extends JPanel {
         if (playerSetting.equals("Human")) {
             newPlayer = new HumanPlayer(token, PlayerType.HUMAN);
         } else {
-            GameStateEvaluator evaluator = getPlayerAiGameEvaluatorFromSettings(lineEvalPlayerPanel);
+            GameStateEvaluator evaluator = getPlayerAiGameEvaluatorFromSettings(playerAiHeuristicComboBox, lineEvalPlayerPanel);
             if (evaluator == null) {
                 return null;
             }

@@ -1,16 +1,9 @@
 package gameResearch;
 
 import ai.AI;
-import ai.GameStateEvaluator;
-import ai.GameStateEvaluatorImpl;
-import ai.MinMaxAI;
 import game.*;
-import gameControl.EndGameObject;
 import gameControl.GameMoveObject;
-import gameControl.GameStartObject;
-import userInreface.UserInterface;
 
-import javax.swing.*;
 import java.time.Duration;
 import java.time.LocalTime;
 

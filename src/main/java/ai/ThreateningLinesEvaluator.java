@@ -3,16 +3,15 @@ package ai;
 import game.Board;
 import game.Token;
 
-public class GameStateEvaluatorImpl implements GameStateEvaluator {
-
+public class ThreateningLinesEvaluator implements GameStateEvaluator {
     private int fourInLineWeight = 1000;
     private int threeInLineWeight = 10;
     private int twoInLineWeight = 1;
 
-    public GameStateEvaluatorImpl() {
+    public ThreateningLinesEvaluator() {
     }
 
-    public GameStateEvaluatorImpl(int fourInLineWeight, int threeInLineWeight, int twoInLineWeight) {
+    public ThreateningLinesEvaluator(int fourInLineWeight, int threeInLineWeight, int twoInLineWeight) {
         this.fourInLineWeight = fourInLineWeight;
         this.threeInLineWeight = threeInLineWeight;
         this.twoInLineWeight = twoInLineWeight;
@@ -27,16 +26,15 @@ public class GameStateEvaluatorImpl implements GameStateEvaluator {
 
     private int getEvaluationForTokenColor(Token token, Board board) {
         int evaluation = 0;
-        evaluation += fourInLineWeight * countInLine(board, token, 4);
-        evaluation += threeInLineWeight * countInLine(board, token, 3);
-        evaluation += twoInLineWeight * countInLine(board, token, 2);
+        evaluation += assesPossibleLines(board, token);
         return evaluation;
     }
 
-    public int countInLine(Board board, Token token, int lineLength) {
-        int count = 0;
+    public int assesPossibleLines(Board board, Token token) {
+        int result = 0;
         Token[][] boardFields = board.getBoard();
         int[][] directions = {{1, 0}, {1, -1}, {1, 1}, {0, 1}};
+        int lineLength = 4;
 
         for (int[] d : directions) {
             int rowDirection = d[0];
@@ -46,37 +44,39 @@ public class GameStateEvaluatorImpl implements GameStateEvaluator {
                     int lastRowIndex = rowIndex + (lineLength - 1) * rowDirection;
                     int lastColIndex = colIndex + (lineLength - 1) * colDirection;
                     if (0 <= lastRowIndex && lastRowIndex < Board.ROW_NUMBER && 0 <= lastColIndex && lastColIndex < Board.COLUMNS_NUMBER) {
-                        boolean theSameTokensInLine = theSameTokensInLine(token, lineLength, boardFields,
-                                rowDirection, colDirection, rowIndex, colIndex);
-                        if (theSameTokensInLine) {
-                            count++;
+                        int count = 0;
+                        boolean lineDiscarded = false;
+                        for (int i = 0; i <= (lineLength - 1); i++) {
+                            if (!lineDiscarded) {
+                                Token nextToken = boardFields[rowIndex + i * rowDirection][colIndex + i * colDirection];
+                                if (nextToken == token) {
+                                    count++;
+                                } else if (nextToken != Token.EMPTY) {
+                                    lineDiscarded = true;
+                                }
+                            }
+                        }
+                        if (!lineDiscarded) {
+                            if (count == 2) {
+                                result += twoInLineWeight;
+                            } else if (count == 3) {
+                                result += threeInLineWeight;
+                            } else  if (count == 4) {
+                                result += fourInLineWeight;
+                            }
                         }
                     }
                 }
             }
         }
-        return count;
+        return result;
     }
 
-    boolean theSameTokensInLine(Token token, int lineLength, Token[][] boardFields,
-                                int rowDirection, int colDirection, int rowIndex, int colIndex) {
-        Token currentToken = boardFields[rowIndex][colIndex];
-        boolean theSameTokensInLine;
-        if (currentToken == token) {
-            theSameTokensInLine = true;
-            for (int i = 1; i <= (lineLength - 1); i++) {
-                Token nextToken = boardFields[rowIndex + i * rowDirection][colIndex + i * colDirection];
-                theSameTokensInLine = theSameTokensInLine && currentToken == nextToken;
-            }
-        } else {
-            theSameTokensInLine = false;
-        }
-        return theSameTokensInLine;
-    }
+
 
     @Override
     public String toString() {
-        return "NumInLineEval" +
+        return "ThreateningLineEval" +
                 "_4w=" + fourInLineWeight +
                 "_3w=" + threeInLineWeight +
                 "_2w=" + twoInLineWeight;
