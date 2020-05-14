@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="969d03f4-ebf4-4b6c-bf28-1c466755aa4e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gameResearch/Simulations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameResearch/Simulations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java" afterDir="false" />
-    </list>
+    <list default="true" id="969d03f4-ebf4-4b6c-bf28-1c466755aa4e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +97,7 @@
       <workItem from="1589023225562" duration="2807000" />
       <workItem from="1589057542725" duration="16000" />
       <workItem from="1589057578858" duration="18000" />
+      <workItem from="1589456859480" duration="137000" />
     </task>
     <task id="LOCAL-00001" summary="update delay penalty parameter">
       <created>1588070016031</created>
@@ -138,11 +134,18 @@
       <option name="project" value="LOCAL" />
       <updated>1588844291235</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add some changes to ismulation mode">
+      <created>1589456941662</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589456941662</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update delay penalty parameter" />
@@ -150,7 +153,8 @@
     <MESSAGE value="add middle column start ai" />
     <MESSAGE value="add random player beginning" />
     <MESSAGE value="add threatening lines game state evaluation" />
-    <option name="LAST_COMMIT_MESSAGE" value="add threatening lines game state evaluation" />
+    <MESSAGE value="add some changes to ismulation mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="add some changes to ismulation mode" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="129" key="#com.intellij.ide.util.MemberChooser" timestamp="1588611337203">
@@ -161,14 +165,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="298" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1588610799404" />
-    <state x="232" y="8" key="CommitChangelistDialog2" timestamp="1588844288724">
+    <state x="232" y="0" key="CommitChangelistDialog2" timestamp="1589456939092">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="232" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588844288724" />
-    <state x="147" y="71" key="DiffContextDialog" timestamp="1588840076950">
+    <state x="232" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1589456939092" />
+    <state x="147" y="71" key="DiffContextDialog" timestamp="1589456917092">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1588840076950" />
+    <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1589456917092" />
     <state x="478" y="307" width="419" height="210" key="Github.ShareDialog" timestamp="1586856533025">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -177,22 +181,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="380" y="119" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1586856545036" />
-    <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1589032363854">
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1589456997112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589032363854" />
-    <state width="1493" height="184" key="GridCell.Tab.0.center" timestamp="1589032363853">
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589456997112" />
+    <state width="1493" height="184" key="GridCell.Tab.0.center" timestamp="1589456997112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589032363853" />
-    <state width="1493" height="184" key="GridCell.Tab.0.left" timestamp="1589032363853">
+    <state width="1493" height="184" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589456997112" />
+    <state width="1493" height="184" key="GridCell.Tab.0.left" timestamp="1589456997112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589032363853" />
-    <state width="1493" height="184" key="GridCell.Tab.0.right" timestamp="1589032363854">
+    <state width="1493" height="184" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589456997112" />
+    <state width="1493" height="184" key="GridCell.Tab.0.right" timestamp="1589456997112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589032363854" />
+    <state width="1493" height="184" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589456997112" />
     <state width="1493" height="413" key="GridCell.Tab.1.bottom" timestamp="1588844405831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -209,10 +213,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="413" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588844405831" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1588070023026">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1589456962527">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588070023026" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1589456962527" />
     <state x="708" y="366" key="extract.method.dialog" timestamp="1588605465119">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -221,21 +225,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="511" y="32" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1588610697692" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java</url>
-          <line>451</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/userInreface/NewGamePanel.java</url>
-          <line>453</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
