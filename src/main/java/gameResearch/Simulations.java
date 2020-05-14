@@ -12,17 +12,22 @@ public class Simulations {
 
     public static void run() {
 
-        int fourInLineWeight = 1000;
-        int threeInLineWeight = 100;
-        int twoInLineWeight = 10;
-        GameStateEvaluator evaluatorOne = new AllLinesEvaluator(fourInLineWeight, threeInLineWeight, twoInLineWeight);
-        GameStateEvaluator evaluatorTwo = new AllLinesEvaluator(fourInLineWeight, threeInLineWeight, twoInLineWeight);
+        int fourInLineWeightOne = 1000;
+        int threeInLineWeightOne = 100;
+        int twoInLineWeightOne = 10;
+        GameStateEvaluator evaluatorOne = new AllLinesEvaluator(fourInLineWeightOne, threeInLineWeightOne, twoInLineWeightOne);
 
-        String aiAlgorithmType = "Alphabeta";
+        int fourInLineWeightTwo = 1000;
+        int threeInLineWeightTwo = 100;
+        int twoInLineWeightTwo = 10;
+        GameStateEvaluator evaluatorTwo = new ThreateningLinesEvaluator(fourInLineWeightTwo, threeInLineWeightTwo, twoInLineWeightTwo);
+
+        String aiAlgorithmTypeOne = "Alphabeta";
+        String aiAlgorithmTypeTwo = "Alphabeta";
         int maxDepth = 5;
 
         try {
-            performSimulations(evaluatorOne, evaluatorTwo, aiAlgorithmType, aiAlgorithmType, maxDepth);
+            performSimulations(evaluatorOne, evaluatorTwo, aiAlgorithmTypeOne, aiAlgorithmTypeTwo, maxDepth);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,10 +66,10 @@ public class Simulations {
     private static void performSimulations(GameStateEvaluator evaluatorOne, GameStateEvaluator evaluatorTwo,
                                            String aiPlayerOneAlgorithmType,
                                            String aiPLayerTwoAlgorithmType, int maxDepth) throws IOException {
-        GameResearchController gameResearchController = new GameResearchController();
 
-        String fileName = "Results_" + aiPlayerOneAlgorithmType + "_"  + evaluatorOne + "_" + aiPLayerTwoAlgorithmType +
-                "_"  + evaluatorTwo + "_" + maxDepth + "_"  + ".csv";
+        GameResearchController gameResearchController = new GameResearchController();
+        String fileName = "Results_" + aiPlayerOneAlgorithmType + "_" + evaluatorOne + "_" + aiPLayerTwoAlgorithmType +
+                "_" + evaluatorTwo + "_" + maxDepth + "_" + ".csv";
 
         FileWriter csvWriter = new FileWriter(fileName);
         csvWriter.append("players_one_ai");
@@ -75,7 +80,7 @@ public class Simulations {
         csvWriter.append(",");
         csvWriter.append("winning");
         csvWriter.append(",");
-        csvWriter.append("winner_1st_pl__moves_count");
+        csvWriter.append("winner_or_1st_player_moves_count");
         csvWriter.append(",");
         csvWriter.append("avg_move_time");
         csvWriter.append(",");
@@ -87,23 +92,40 @@ public class Simulations {
         for (int aiOneDepth = 1; aiOneDepth <= maxDepth; aiOneDepth++) {
             for (int aiTwoDepth = 1; aiTwoDepth <= maxDepth; aiTwoDepth++) {
                 for (int i = 0; i < 10; i++) {
-                    System.out.print(" " + aiPlayerOneAlgorithmType + "_" + aiOneDepth +  "_" + aiPLayerTwoAlgorithmType + "_" + aiTwoDepth);
+                    System.out.print(" " + aiPlayerOneAlgorithmType + "_" + aiOneDepth + "_" + aiPLayerTwoAlgorithmType + "_" + aiTwoDepth);
                     AI playerOneAi;
                     AI playerTwoAi;
-                    if (aiPlayerOneAlgorithmType.equals("Alphabeta")) {
-                        playerOneAi = new AlphaBetaAI(aiOneDepth, evaluatorOne);
-                    } else {
-                        playerOneAi = new MinMaxAI(aiOneDepth, evaluatorOne);
+                    switch (aiPlayerOneAlgorithmType) {
+                        case "Alphabeta":
+                            playerOneAi = new AlphaBetaAI(aiOneDepth, evaluatorOne);
+                            break;
+                        case "Alphabeta Middle":
+                            playerOneAi = new AlphaBetaMiddleColStartAI(aiOneDepth, evaluatorOne);
+                            break;
+                        case "Minmax":
+                            playerOneAi = new MinMaxAI(aiOneDepth, evaluatorOne);
+                            break;
+                        default:
+                            playerOneAi = new MinMaxMiddleColStartAI(aiOneDepth, evaluatorOne);
+                            break;
                     }
 
-                    if (aiPLayerTwoAlgorithmType.equals("Alphabeta")) {
-                        playerTwoAi = new AlphaBetaAI(aiTwoDepth, evaluatorTwo);
-                    } else {
-                        playerTwoAi = new MinMaxAI(aiTwoDepth, evaluatorTwo);
+                    switch (aiPLayerTwoAlgorithmType) {
+                        case "Alphabeta":
+                            playerTwoAi = new AlphaBetaAI(aiTwoDepth, evaluatorTwo);
+                            break;
+                        case "Alphabeta Middle":
+                            playerTwoAi = new AlphaBetaMiddleColStartAI(aiTwoDepth, evaluatorTwo);
+                            break;
+                        case "Minmax":
+                            playerTwoAi = new MinMaxAI(aiTwoDepth, evaluatorTwo);
+                            break;
+                        default:
+                            playerTwoAi = new MinMaxMiddleColStartAI(aiTwoDepth, evaluatorTwo);
+                            break;
                     }
 
                     GameStatistics statistics = gameResearchController.startGame(playerOneAi, playerTwoAi);
-
                     Player playerOne = statistics.getPlayerOne();
                     Player playerTwo = statistics.getPlayerTwo();
                     Player startingPlayer = statistics.getStartingPlayer();
@@ -119,13 +141,13 @@ public class Simulations {
                         movesCount = statistics.getPlayersMovesCount().get(winner);
                     }
 
-                    List<Double> times =  statistics.getAllMovesTimes()
+                    List<Double> times = statistics.getAllMovesTimes()
                             .stream().mapToDouble(val -> (double) val)
                             .boxed()
                             .collect(Collectors.toList());
                     double avgMoveTime = StatisticProperties.average(times);
 
-                    List<Double> p1Times =  statistics.getPlayersMovesTimes().get(playerOne)
+                    List<Double> p1Times = statistics.getPlayersMovesTimes().get(playerOne)
                             .stream().mapToDouble(val -> (double) val)
                             .boxed()
                             .collect(Collectors.toList());

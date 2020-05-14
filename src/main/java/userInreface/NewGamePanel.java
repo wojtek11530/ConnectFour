@@ -312,8 +312,6 @@ public class NewGamePanel extends JPanel {
             });
 
         }
-
-
     }
 
     private class PlayerAiHeuristicComboBox extends JComboBox<String> implements ActionListener {
