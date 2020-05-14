@@ -6,17 +6,18 @@ import game.Player;
 import game.Token;
 import gameControl.GameMoveObject;
 
+public class MinMaxMiddleColStartAI implements AI {
 
-public class MinMaxAI implements AI {
+
 
     private int minmaxMaxDepth = 5;
     private ConnectFourGame game;
     private GameStateEvaluator evaluator;
 
-    public MinMaxAI() {
+    public MinMaxMiddleColStartAI() {
     }
 
-    public MinMaxAI(int minmaxMaxDepth, GameStateEvaluator evaluator) {
+    public MinMaxMiddleColStartAI(int minmaxMaxDepth, GameStateEvaluator evaluator) {
         this.minmaxMaxDepth = minmaxMaxDepth;
         this.evaluator = evaluator;
     }
@@ -31,37 +32,46 @@ public class MinMaxAI implements AI {
 
         Player currentPlayer = game.getCurrentPlayer();
         Token currentToken = currentPlayer.getPlayerToken();
+
         int column = 0;
-        int bestResult;
 
-        if (currentToken == Token.RED) {
-            bestResult = Integer.MIN_VALUE;
-        } else {
-            bestResult = Integer.MAX_VALUE;
+        if (boardIsEmpty()) {
+            column = 3;
         }
+        else {
+            int bestResult;
 
-        for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
-            if (game.putIntoColumnPossible(colIndex)) {
-                GameMoveObject moveObject = game.putCurrentPlayerToken(colIndex);
-
-                int minMaxResult = minMax(0);
-                if (minMaxResult > bestResult && currentToken == Token.RED) {
-                    bestResult = minMaxResult;
-                    column = colIndex;
-                } else if (minMaxResult < bestResult && currentToken == Token.YELLOW) {
-                    bestResult = minMaxResult;
-                    column = colIndex;
-                }
-                game.setEmptyField(moveObject.getLatMoveRow(), moveObject.getLastMoveCol());
-                game.setCurrentPlayer(currentPlayer);
-                game.setWinner(null);
+            if (currentToken == Token.RED) {
+                bestResult = Integer.MIN_VALUE;
+            } else {
+                bestResult = Integer.MAX_VALUE;
             }
-        }
 
-        game.setCurrentPlayer(currentPlayer);
-        game.setWinner(null);
+            for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
+                if (game.putIntoColumnPossible(colIndex)) {
+                    GameMoveObject moveObject = game.putCurrentPlayerToken(colIndex);
+
+                    int minMaxResult = minMax(0);
+                    if (minMaxResult > bestResult && currentToken == Token.RED) {
+                        bestResult = minMaxResult;
+                        column = colIndex;
+                    } else if (minMaxResult < bestResult && currentToken == Token.YELLOW) {
+                        bestResult = minMaxResult;
+                        column = colIndex;
+                    }
+                    game.setEmptyField(moveObject.getLatMoveRow(), moveObject.getLastMoveCol());
+                    game.setCurrentPlayer(currentPlayer);
+                    game.setWinner(null);
+                }
+            }
+
+            game.setCurrentPlayer(currentPlayer);
+            game.setWinner(null);
+        }
         return column;
     }
+
+
 
     public int minMax(int depth) {
 
@@ -107,8 +117,17 @@ public class MinMaxAI implements AI {
         return evaluator.evaluateGame(game.getBoard());
     }
 
+    private boolean boardIsEmpty() {
+        Token[] lowestRow = game.getBoard().getLowestRow();
+        boolean isEmpty = true;
+        for (Token token: lowestRow) {
+            isEmpty = isEmpty && token == Token.EMPTY;
+        }
+        return isEmpty;
+    }
+
     @Override
     public String toString() {
-        return "MinMax_" + minmaxMaxDepth;
+        return "MinMax_MiddleStart_" + minmaxMaxDepth;
     }
 }

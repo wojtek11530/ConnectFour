@@ -6,8 +6,7 @@ import game.Player;
 import game.Token;
 import gameControl.GameMoveObject;
 
-
-public class AlphaBetaAI implements AI {
+public class AlphaBetaMiddleColStartAI implements AI {
 
 
     private int minmaxMaxDepth = 5;
@@ -15,10 +14,10 @@ public class AlphaBetaAI implements AI {
     private GameStateEvaluator evaluator;
 
 
-    public AlphaBetaAI() {
+    public AlphaBetaMiddleColStartAI() {
     }
 
-    public AlphaBetaAI(int minmaxMaxDepth, GameStateEvaluator evaluator) {
+    public AlphaBetaMiddleColStartAI(int minmaxMaxDepth, GameStateEvaluator evaluator) {
         this.minmaxMaxDepth = minmaxMaxDepth;
         this.evaluator = evaluator;
     }
@@ -34,34 +33,40 @@ public class AlphaBetaAI implements AI {
         Player currentPlayer = game.getCurrentPlayer();
         Token currentToken = currentPlayer.getPlayerToken();
         int column = 0;
-        int bestResult;
 
-        if (currentToken == Token.RED) {
-            bestResult = Integer.MIN_VALUE;
-        } else {
-            bestResult = Integer.MAX_VALUE;
+        if (boardIsEmpty()) {
+            column = 3;
         }
+        else {
+            int bestResult;
 
-        for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
-            if (game.putIntoColumnPossible(colIndex)) {
-                GameMoveObject moveObject = game.putCurrentPlayerToken(colIndex);
-
-                int minMaxResult = minMaxWihAlphaBeta(0, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                if (minMaxResult > bestResult && currentToken == Token.RED) {
-                    bestResult = minMaxResult;
-                    column = colIndex;
-                } else if (minMaxResult < bestResult && currentToken == Token.YELLOW) {
-                    bestResult = minMaxResult;
-                    column = colIndex;
-                }
-                game.setEmptyField(moveObject.getLatMoveRow(), moveObject.getLastMoveCol());
-                game.setCurrentPlayer(currentPlayer);
-                game.setWinner(null);
+            if (currentToken == Token.RED) {
+                bestResult = Integer.MIN_VALUE;
+            } else {
+                bestResult = Integer.MAX_VALUE;
             }
-        }
 
-        game.setCurrentPlayer(currentPlayer);
-        game.setWinner(null);
+            for (int colIndex = 0; colIndex < Board.COLUMNS_NUMBER; colIndex++) {
+                if (game.putIntoColumnPossible(colIndex)) {
+                    GameMoveObject moveObject = game.putCurrentPlayerToken(colIndex);
+
+                    int minMaxResult = minMaxWihAlphaBeta(0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                    if (minMaxResult > bestResult && currentToken == Token.RED) {
+                        bestResult = minMaxResult;
+                        column = colIndex;
+                    } else if (minMaxResult < bestResult && currentToken == Token.YELLOW) {
+                        bestResult = minMaxResult;
+                        column = colIndex;
+                    }
+                    game.setEmptyField(moveObject.getLatMoveRow(), moveObject.getLastMoveCol());
+                    game.setCurrentPlayer(currentPlayer);
+                    game.setWinner(null);
+                }
+            }
+
+            game.setCurrentPlayer(currentPlayer);
+            game.setWinner(null);
+        }
         return column;
     }
 
@@ -110,7 +115,6 @@ public class AlphaBetaAI implements AI {
                     }
                 }
             }
-
             game.setCurrentPlayer(previousPlayer);
             return bestResult;
         }
@@ -119,6 +123,17 @@ public class AlphaBetaAI implements AI {
     public int evaluateState() {
         return evaluator.evaluateGame(game.getBoard());
     }
+
+
+    private boolean boardIsEmpty() {
+        Token[] lowestRow = game.getBoard().getLowestRow();
+        boolean isEmpty = true;
+        for (Token token: lowestRow) {
+            isEmpty = isEmpty && token == Token.EMPTY;
+        }
+        return isEmpty;
+    }
+
 
     @Override
     public String toString() {

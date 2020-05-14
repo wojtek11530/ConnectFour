@@ -3,16 +3,16 @@ package ai;
 import game.Board;
 import game.Token;
 
-public class GameStateEvaluatorImpl implements GameStateEvaluator {
+public class AllLinesEvaluator implements GameStateEvaluator {
 
     private int fourInLineWeight = 1000;
     private int threeInLineWeight = 10;
     private int twoInLineWeight = 1;
 
-    public GameStateEvaluatorImpl() {
+    public AllLinesEvaluator() {
     }
 
-    public GameStateEvaluatorImpl(int fourInLineWeight, int threeInLineWeight, int twoInLineWeight) {
+    public AllLinesEvaluator(int fourInLineWeight, int threeInLineWeight, int twoInLineWeight) {
         this.fourInLineWeight = fourInLineWeight;
         this.threeInLineWeight = threeInLineWeight;
         this.twoInLineWeight = twoInLineWeight;
@@ -72,5 +72,13 @@ public class GameStateEvaluatorImpl implements GameStateEvaluator {
             theSameTokensInLine = false;
         }
         return theSameTokensInLine;
+    }
+
+    @Override
+    public String toString() {
+        return "AllLinesEval" +
+                "_4w=" + fourInLineWeight +
+                "_3w=" + threeInLineWeight +
+                "_2w=" + twoInLineWeight;
     }
 }

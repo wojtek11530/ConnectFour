@@ -1,7 +1,7 @@
 package game;
 
 import ai.GameStateEvaluator;
-import ai.GameStateEvaluatorImpl;
+import ai.AllLinesEvaluator;
 import gameControl.GameMoveObject;
 
 public class ConnectFourGame {
@@ -20,28 +20,28 @@ public class ConnectFourGame {
         board = new Board();
         player1 = new ComputerPlayer(Token.YELLOW, PlayerType.AI);
         player2 = new HumanPlayer(Token.RED, PlayerType.HUMAN);
-        evaluator = new GameStateEvaluatorImpl();
+        evaluator = new AllLinesEvaluator();
     }
 
     public ConnectFourGame(Player playerOne, Player playerTwo) {
         board = new Board();
         player1 = playerOne;
         player2 = playerTwo;
-        evaluator = new GameStateEvaluatorImpl();
     }
 
-    public ConnectFourGame(Player playerOne, Player playerTwo, GameStateEvaluator gameStateEvaluator) {
-        board = new Board();
-        player1 = playerOne;
-        player2 = playerTwo;
-        evaluator = gameStateEvaluator;
-    }
 
     public void initGame() {
         board.setBoardEmpty();
         winner = null;
         currentPlayer = player1;
     }
+
+    public void initGameRandomPlayerBegins() {
+        board.setBoardEmpty();
+        winner = null;
+        currentPlayer = Math.random() < 0.5? player1 : player2;
+    }
+
 
     public void swapPlayers() {
         currentPlayer = currentPlayer == player1 ? player2 : player1;
@@ -132,10 +132,6 @@ public class ConnectFourGame {
         boardFields[rowIndex][colIndex] = Token.EMPTY;
     }
 
-
-    public int evaluateState() {
-        return evaluator.evaluateGame(getBoard());
-    }
 
     public Board getBoard() {
         return board;
